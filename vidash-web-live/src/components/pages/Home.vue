@@ -1,14 +1,17 @@
 <script lang="ts" setup>
-import { Button } from '@/components/ui/button'
-import router from '@/router';
+import axios from '@/axios';
 
-const logout = () => {
-  localStorage.removeItem('token')
-  router.push("/signin")
+const fetchUserAccount = async () => {
+  await axios.get(`api/accounts/by_id/${localStorage.getItem('auth_id')}`)
 }
+
+const init = () => {
+  fetchUserAccount()
+}
+
+init()
 </script>
 
 <template>
-  <p class="text-3xl pb-2">Hello World</p>
-  <Button variant="outline" @click="logout()">Logout</Button>
+
 </template>

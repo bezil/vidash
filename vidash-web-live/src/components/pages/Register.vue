@@ -56,6 +56,10 @@ const fetchAuthToken = (paramObject: signupParams) => {
     .catch(error => console.error('Error:', error));
 }
 
+const redirectToLogin = () => {
+  router.push("/signin")
+}
+
 const onSubmit = form.handleSubmit((values) => {
   fetchAuthToken(values)
 })
@@ -104,6 +108,9 @@ const onSubmit = form.handleSubmit((values) => {
     </FormField>
     <Button type="submit">
       Submit
+    </Button>
+    <Button variant="ghost" @click="redirectToLogin()">
+      Login if account already created
     </Button>
   </form>
     </div>

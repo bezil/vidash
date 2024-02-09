@@ -38,9 +38,10 @@ const login = (paramObject: loginParams) => {
     },{ withCredentials: true })
     .then((response) => {
       localStorage.setItem('token', response.data.token)
+      localStorage.setItem('auth_id', response.data.id)
 
       form.resetForm()
-      router.push("/")
+      router.push("/").then(() => router.go(0))
     })
     .catch(error => console.error('Error:', error));
 }
@@ -82,7 +83,7 @@ const onSubmit = form.handleSubmit((values) => {
       Login
     </Button>
     <Button variant="ghost" @click="redirectToRegister()">
-      Register
+      Signup if account not registered
     </Button>
   </form>
     </div>
