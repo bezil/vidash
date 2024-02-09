@@ -29,6 +29,7 @@ defmodule VidashLiveServerWeb.Router do
     pipe_through [:api, :auth]
 
     get "/", DefaultController, :home
-    get "/accounts/by_id/:id", AccountController, :show
+    get "/accounts/:id", AccountController, :show
+    get "/users/:account_id", UserController, :show_from_account
   end
 end

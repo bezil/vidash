@@ -14,11 +14,11 @@ defmodule VidashLiveServerWeb.AccountController do
   def create(conn, %{"account" => account_params}) do
     with {:ok, %Account{} = account} <- Accounts.create_account(account_params),
     {:ok, token, _claims} <- Guardian.encode_and_sign(account),
-    {:ok, %User{} = _user} <- Users.create_user(account, account_params) do
+    {:ok, %User{} = user} <- Users.create_user(account, account_params) do
       conn
       |> put_status(:created)
       |> put_resp_header("location", ~p"/api/signup/#{account}")
-      |> render(:account_token, %{account: account, token: token})
+      |> render(:account_token, %{account: account, user: user, token: token})
       end
   end
 

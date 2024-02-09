@@ -25,6 +25,11 @@ defmodule VidashLiveServerWeb.UserController do
     render(conn, :show, user: user)
   end
 
+  def show_from_account(conn, %{"account_id" => account_id}) do
+    user = Users.get_user_by_account(account_id)
+    render(conn, :show, user: user)
+  end
+
   def update(conn, %{"id" => id, "user" => user_params}) do
     user = Users.get_user!(id)
 

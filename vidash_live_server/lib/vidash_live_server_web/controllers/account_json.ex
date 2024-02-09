@@ -23,6 +23,15 @@ defmodule VidashLiveServerWeb.AccountJSON do
     }
   end
 
+  def account_token(%{account: account, user: user, token: token}) do
+    %{
+      id: account.id,
+      email: account.email,
+      token: token,
+      username: user.full_name
+    }
+  end
+
   def account_token(%{account: account, token: token}) do
     %{
       id: account.id,
