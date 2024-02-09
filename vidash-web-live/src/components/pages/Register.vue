@@ -1,0 +1,113 @@
+<script setup lang="ts">
+import { useForm } from 'vee-validate'
+import { toTypedSchema } from '@vee-validate/zod'
+import * as z from 'zod'
+import axios from '@/axios'
+
+import { Button } from '@/components/ui/button'
+import {
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '@/components/ui/form'
+import { Input } from '@/components/ui/input'
+import router from '@/router'
+
+const formSchema = toTypedSchema(
+  z.object({
+    username: z.string().min(2).max(50),
+    email:  z.string().email(),
+    password: z.string().min(8),
+    confrimPassword:  z.string().min(8)
+  })
+  .refine((data) => data.password === data.confrimPassword, {
+    message: "Passwords don't match",
+    path: ["confrimPassword"], // path of error
+  })
+)
+
+const form = useForm({
+  validationSchema: formSchema,
+})
+
+type signupParams = {
+  email:  string,
+  password: string,
+  username: string,
+};
+
+const fetchAuthToken = (paramObject: signupParams) => {
+    axios.post('api/signup', {
+        account: {
+            email: paramObject.email,
+            hashed_password: paramObject.password,
+            full_name: paramObject.username,
+            gender: null,
+            avatar: null,
+            bio: null
+        }
+    },{ withCredentials: true })
+    .then(() => {
+      form.resetForm()
+      router.push("/signin")
+    })
+    .catch(error => console.error('Error:', error));
+}
+
+const onSubmit = form.handleSubmit((values) => {
+  fetchAuthToken(values)
+})
+</script>
+
+<template>
+    <div class="place-items-center grid pt-8 bg-white">
+        <form class="flex flex-col gap-y-4 w-full text-left
+            max-w-sm border border-grey rounded-md p-8" @submit.prevent="onSubmit">
+        <p class="text-3xl pb-2">Register</p>
+        <FormField v-slot="{ componentField }" name="username">
+        <FormItem>
+            <FormLabel>Full Name</FormLabel>
+            <FormControl>
+            <Input type="text" placeholder="Input full name" v-bind="componentField" />
+            </FormControl>
+            <FormMessage />
+        </FormItem>
+        </FormField>
+        <FormField v-slot="{ componentField }" name="email">
+        <FormItem>
+            <FormLabel>Email Address</FormLabel>
+            <FormControl>
+            <Input type="text" placeholder="Input Email address" v-bind="componentField" />
+            </FormControl>
+            <FormMessage />
+        </FormItem>
+        </FormField>
+        <FormField v-slot="{ componentField }" name="password">
+      <FormItem>
+        <FormLabel>Password</FormLabel>
+        <FormControl>
+          <Input type="password" placeholder="Input password" v-bind="componentField" />
+        </FormControl>
+        <FormMessage />
+      </FormItem>
+    </FormField>
+    <FormField v-slot="{ componentField }" name="confrimPassword">
+      <FormItem>
+        <FormLabel>Confirm Password</FormLabel>
+        <FormControl>
+          <Input type="text" placeholder="Confirm password" v-bind="componentField" />
+        </FormControl>
+        <FormMessage />
+      </FormItem>
+    </FormField>
+    <Button type="submit">
+      Submit
+    </Button>
+  </form>
+    </div>
+</template>
+
+<style scoped>
+</style>
