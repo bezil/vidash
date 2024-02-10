@@ -12,7 +12,7 @@ defmodule VidashLiveServerWeb.UserJSON do
   Renders a single user.
   """
   def show(%{user: user}) do
-    %{data: data(user)}
+    %{details: data(user)}
   end
 
   defp data(%User{} = user) do

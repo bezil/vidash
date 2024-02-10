@@ -11,6 +11,11 @@ defmodule VidashLiveServer.Users.User do
     field :bio, :string
     belongs_to :account, VidashLiveServer.Accounts.Account
 
+    # Define associations
+    has_many :servers, VidashLiveServer.Servers.Server
+    has_many :members, VidashLiveServer.Members.Member
+    # has_many(:channels, VidashLiveServer.Channels.Channel)
+
     timestamps(type: :utc_datetime)
   end
 
