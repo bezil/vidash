@@ -42,16 +42,10 @@ defmodule VidashLiveServer.Servers do
   Get the server associated with that user as a member
   """
   def get_server_from_user(id) do
-    case Repo.one(from m in Member, where: m.user_id == ^id, select: m.server_id) do
-      nil ->
-        {:error, "No server found for the user"}
-      server_id ->
-        case Repo.get(Server, server_id) do
-          nil ->
-            {:error, "Server not found"}
-          server ->
-            server
-        end
+    case Repo.one(from s in Server, where: s.user_id == ^id, select: s) do
+      nil -> {:error, "No server found for the user"}
+      server ->
+        server
     end
   end
 
@@ -67,8 +61,9 @@ defmodule VidashLiveServer.Servers do
       {:error, %Ecto.Changeset{}}
 
   """
-  def create_server(attrs \\ %{}) do
-    %Server{}
+  def create_server(user, attrs \\ %{}) do
+    user
+    |> Ecto.build_assoc(:servers)
     |> Server.changeset(attrs)
     |> Repo.insert()
   end

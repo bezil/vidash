@@ -35,7 +35,7 @@ const login = (paramObject: loginParams) => {
     axios.post('api/signin', {
         email: paramObject.email,
         hashed_password: paramObject.password,
-    },{ withCredentials: true })
+    })
     .then((response) => {
       localStorage.setItem('token', response.data.token)
       localStorage.setItem('auth_id', response.data.id)

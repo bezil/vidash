@@ -3,7 +3,7 @@ import { useForm } from 'vee-validate'
 import { toTypedSchema } from '@vee-validate/zod'
 import * as z from 'zod'
 import axios from '@/axios'
-
+import { useToast } from '@/components/ui/toast/use-toast'
 import { Button } from '@/components/ui/button'
 import {
   FormControl,
@@ -14,6 +14,8 @@ import {
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import router from '@/router'
+
+const { toast } = useToast()
 
 const formSchema = toTypedSchema(
   z.object({
@@ -52,6 +54,9 @@ const fetchAuthToken = (paramObject: signupParams) => {
     .then(() => {
       form.resetForm()
       router.push("/signin")
+      toast({
+        description: 'Registered Successfully. Please login now',
+      });
     })
     .catch(error => console.error('Error:', error));
 }

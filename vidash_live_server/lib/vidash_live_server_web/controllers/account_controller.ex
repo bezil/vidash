@@ -17,7 +17,6 @@ defmodule VidashLiveServerWeb.AccountController do
     {:ok, %User{} = user} <- Users.create_user(account, account_params) do
       conn
       |> put_status(:created)
-      |> put_resp_header("location", ~p"/api/signup/#{account}")
       |> render(:account_token, %{account: account, user: user, token: token})
       end
   end
@@ -25,10 +24,14 @@ defmodule VidashLiveServerWeb.AccountController do
   def login(conn, %{"email" => email, "hashed_password" => hashed_password}) do
     case Guardian.authenticate(email, hashed_password) do
       {:ok, account, token} ->
+        # conn = put_session(conn, :account_id, account.id)
+        # message = get_session(conn, :account_id)
+        # IO.puts("---------#{message}")
         conn
         |> put_status(:ok)
         |> render(:account_token, %{account: account, token: token})
-      {:error, :unauthorized} -> raise ErrorResponse.Unauthorized, message: "Email or Password incorrect."
+      {:error, :unauthorized} ->
+        raise ErrorResponse.Unauthorized, message: "Email or Password incorrect."
     end
   end
 

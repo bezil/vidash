@@ -2,6 +2,7 @@
 import { LogOut } from 'lucide-vue-next'
 import { Button } from '@/components/ui/button'
 import { computed } from 'vue'
+import Toaster from '@/components/ui/toast/Toaster.vue'
 import DarkMode from '@/components/theme/DarkMode.vue'
 import router from '@/router';
 
@@ -27,6 +28,7 @@ const logout = () => {
     </div>
   </div>
   <router-view></router-view>
+  <Toaster />
 </template>
 
 <style>

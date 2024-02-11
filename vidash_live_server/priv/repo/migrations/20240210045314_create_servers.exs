@@ -7,6 +7,7 @@ defmodule VidashLiveServer.Repo.Migrations.CreateServers do
       add :name, :string
       add :image_url, :string
       add :invite_code, :string
+      add :user_id, references(:users, on_delete: :nothing, type: :binary_id)
 
       timestamps(type: :utc_datetime)
     end

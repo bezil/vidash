@@ -8,7 +8,7 @@ defmodule VidashLiveServerWeb.Endpoint do
     store: :cookie,
     key: "_vidash_live_server_key",
     signing_salt: "pVme9NVJ",
-    same_site: "Lax"
+    same_site: "Lax",
   ]
 
   # socket "/live", Phoenix.LiveView.Socket, websocket: [connect_info: [session: @session_options]]

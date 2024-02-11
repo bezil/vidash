@@ -12,10 +12,12 @@ defmodule VidashLiveServerWeb.Router do
 
   pipeline :api do
     plug :accepts, ["json"]
+    # plug :fetch_session
   end
 
   pipeline :auth do
     plug VidashLiveServerWeb.Auth.Pipeline
+    # plug VidashLiveServerWeb.Auth.SetAccount
   end
 
   scope "/api", VidashLiveServerWeb do
@@ -30,7 +32,9 @@ defmodule VidashLiveServerWeb.Router do
 
     get "/accounts/:id", AccountController, :show
     get "/users/:account_id", UserController, :show_from_account
+
     get "/servers/:id", ServerController, :show
     get "/servers/by_user_id/:user_id", ServerController, :show_from_user
+    post "/servers/create", ServerController, :create_server_user
   end
 end

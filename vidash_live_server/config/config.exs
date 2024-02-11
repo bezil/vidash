@@ -34,7 +34,8 @@ config :vidash_live_server, VidashLiveServerWeb.Auth.Guardian,
 
 # Configures Cors
 config :cors_plug,
-  origin: ["http://localhost:5173"],
+  origins: "*",
+  allow_headers: ["authorization", "content-type"],
   max_age: 86400,
   methods: ["GET", "POST"]
 

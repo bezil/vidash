@@ -19,6 +19,10 @@ vidash_live_server/erl_crash.dump
 # Also ignore archive artifacts (built via "mix archive.build").
 vidash_live_server/*.ez
 
+
+#SQL commands
+/vidash_live_server/queries.SQL
+
 # Temporary files, for example, from tests.
 /vidash_live_server/tmp/
 

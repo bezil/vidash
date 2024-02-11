@@ -20,6 +20,6 @@ defmodule VidashLiveServer.Servers.Server do
   def changeset(server, attrs) do
     server
     |> cast(attrs, [:name, :image_url, :invite_code])
-    |> validate_required([:name, :image_url, :invite_code])
+    |> validate_required([:name])
   end
 end
