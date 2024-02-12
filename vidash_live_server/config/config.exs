@@ -30,7 +30,7 @@ config :logger, :console,
 # Configures Auth
 config :vidash_live_server, VidashLiveServerWeb.Auth.Guardian,
   issuer: "vidash_live_server",
-  secret_key: "9/NB4ctPZz6RtBzNI8tVHaeQsUv0dwdOYTue8yA2xghcwWNohk7PkKhS4beIjWcc"
+  secret_key: System.get_env("VIDASH_AUTH_SECRET")
 
 # Configures Cors
 config :cors_plug,
@@ -41,6 +41,12 @@ config :cors_plug,
 
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
+
+# Config AWS/S3
+config :ex_aws,
+  access_key_id: System.get_env("VIDASH_AWS_ACCESS_KEY"),
+  secret_access_key: System.get_env("VIDASH_BUCKET_SECRET"),
+  region: "eu-north-1"
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.

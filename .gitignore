@@ -29,6 +29,8 @@ vidash_live_server/*.ez
 # Ignore package tarball (built via "mix hex.build").
 vidash_live_server/vidash_live_server-*.tar
 
+vidash_live_server/.env
+
 #CFE
 vidash-web-live/.vite
 vidash-web-live/node_modules

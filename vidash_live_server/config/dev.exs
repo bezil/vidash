@@ -27,6 +27,10 @@ config :vidash_live_server, VidashLiveServerWeb.Endpoint,
   secret_key_base: "bWSCPSJ+ZDNrxVq4WiszVqdCLOnJMYt2vRKdQwu363OCg4zw76cH2OElnzxSEOZO",
   watchers: []
 
+# S3/Aws Configuration
+config :vidash_live_server, :bucket_key, System.get_env("VIDASH_BUCKET_KEY")
+config :vidash_live_server, :bucket_secret, System.get_env("VIDASH_BUCKET_SECRET")
+
 # ## SSL Support
 #
 # In order to use HTTPS in development, a self-signed

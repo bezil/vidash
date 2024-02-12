@@ -22,12 +22,11 @@ const fetchUserAccount = async () => {
 
 const fetchServerDetails = async () => {
   const response = await axios.get(`api/servers/by_user_id/${user.value?.id}`)
+    .catch(() => console.log("No server found"))
 
   if(response) {
     console.log(response.data.details)
     isServerAlreadySetup.value = true;
-  } else {
-    console.log("No server found")
   }
 }
 

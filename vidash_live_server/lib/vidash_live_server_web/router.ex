@@ -33,6 +33,8 @@ defmodule VidashLiveServerWeb.Router do
     get "/accounts/:id", AccountController, :show
     get "/users/:account_id", UserController, :show_from_account
 
+    get "/uploads/request_url", UploadController, :create_signed_url
+
     get "/servers/:id", ServerController, :show
     get "/servers/by_user_id/:user_id", ServerController, :show_from_user
     post "/servers/create", ServerController, :create_server_user
