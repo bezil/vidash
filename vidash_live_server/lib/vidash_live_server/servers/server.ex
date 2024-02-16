@@ -10,8 +10,9 @@ defmodule VidashLiveServer.Servers.Server do
     field :invite_code, :string
 
     belongs_to :user, VidashLiveServer.Users.User
+
     has_many :members, VidashLiveServer.Members.Member
-    # has_many :channels, VidashLiveServer.Channels.Channel
+    has_many :channels, VidashLiveServer.Channels.Channel
 
     timestamps(type: :utc_datetime)
   end
