@@ -12,6 +12,7 @@ defmodule VidashLiveServerWeb.ServerJSON do
       %{
         id: server.id,
         name: server.name,
+        image_url: server.image_url
       }
     end
   end

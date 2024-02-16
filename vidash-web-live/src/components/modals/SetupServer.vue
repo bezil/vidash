@@ -49,7 +49,7 @@ type serverParams = {
   name: string,
 };
 
-const progress = ref(13)
+const progress = ref(30)
 
 const isLoading = ref(false)
 const isDialogVisible = ref(props.dialogVisible)
@@ -57,6 +57,8 @@ const imageUploadUrl = ref('')
 
 const imageUrl =  ref('')
 const id = computed(() => props.accountId)
+
+const emit = defineEmits(['fetch-details'])
 
 const { files, onChange, open, reset } = useFileDialog({
   accept: 'image/*',
@@ -80,9 +82,9 @@ onChange((selectedFiles) => {
         console.error('Error in image upload:', error);
       });
       setTimeout(() => {
-        progress.value = 70
+        progress.value = 90
         imageUrl.value = imageUploadUrl.value.split('?')[0]
-      }, 2000)
+      }, 3000)
   }
 })
 
@@ -99,6 +101,7 @@ const createServer = (paramObject: serverParams) => {
     .then(() => {
       form.resetForm()
       isDialogVisible.value = false
+      emit('fetch-details')
     })
     .catch(error => console.error('Error:', error));
     isLoading.value = false

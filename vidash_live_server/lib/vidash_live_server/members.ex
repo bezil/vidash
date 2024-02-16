@@ -56,6 +56,28 @@ defmodule VidashLiveServer.Members do
   end
 
   @doc """
+  Create member using server id and user id
+  """
+  def create_member_from_server(server_id, user_id, attrs \\ %{}) do
+    IO.puts("---")
+    member_changeset = %Member{user_id: user_id, server_id: server_id, role: "ADMIN"}
+    |> Member.changeset(attrs)
+
+    case Repo.insert(member_changeset) do
+      {:ok, member} ->
+      # Successfully inserted
+      IO.puts("---Successfully inserted")
+
+      {:ok, member}
+      {:error, changeset} ->
+      # Failed to insert, handle the error
+      IO.puts("---Failed to insert, handle the error")
+
+      {:error, changeset}
+    end
+  end
+
+  @doc """
   Updates a member.
 
   ## Examples

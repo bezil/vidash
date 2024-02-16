@@ -50,7 +50,7 @@ const fetchAuthToken = (paramObject: signupParams) => {
             avatar: null,
             bio: null
         }
-    },{ withCredentials: true })
+    })
     .then(() => {
       form.resetForm()
       router.push("/signin")
@@ -106,7 +106,7 @@ const onSubmit = form.handleSubmit((values) => {
       <FormItem>
         <FormLabel>Confirm Password</FormLabel>
         <FormControl>
-          <Input type="text" placeholder="Confirm password" v-bind="componentField" />
+          <Input type="password" placeholder="Confirm password" v-bind="componentField" />
         </FormControl>
         <FormMessage />
       </FormItem>

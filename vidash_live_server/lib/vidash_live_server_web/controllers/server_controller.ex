@@ -1,7 +1,7 @@
 defmodule VidashLiveServerWeb.ServerController do
     use VidashLiveServerWeb, :controller
 
-    alias VidashLiveServer.{Users, Servers, Servers.Server}
+    alias VidashLiveServer.{Users, Servers, Members, Servers.Server}
 
     action_fallback VidashLiveServerWeb.FallbackController
 
@@ -53,6 +53,8 @@ defmodule VidashLiveServerWeb.ServerController do
             user ->
               case Servers.create_server(user, server) do
                 {:ok, %Server{} = created_server} ->
+                  new_server = Servers.get_server_from_user(user.id)
+                  member = Members.create_member_from_server(new_server.id, user.id)
                   conn
                   |> put_status(:created)
                   |> put_resp_header("location", "/api/servers/#{created_server.id}")

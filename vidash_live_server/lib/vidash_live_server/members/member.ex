@@ -25,9 +25,9 @@ defmodule VidashLiveServer.Members.Member do
   @doc false
   def changeset(member, attrs) do
     member
-    |> cast(attrs, [:role, :user_id, :server_id])
+    |> cast(attrs, [:user_id, :server_id, :role])
     |> validate_role()
-    |> validate_required([])
+    |> validate_required([:user_id, :server_id, :role])
   end
 
   defp validate_role(changeset) do

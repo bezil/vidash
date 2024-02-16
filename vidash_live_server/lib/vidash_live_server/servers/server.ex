@@ -10,7 +10,7 @@ defmodule VidashLiveServer.Servers.Server do
     field :invite_code, :string
 
     belongs_to :user, VidashLiveServer.Users.User
-    # has_many :members, VidashLiveServer.Members.Member
+    has_many :members, VidashLiveServer.Members.Member
     # has_many :channels, VidashLiveServer.Channels.Channel
 
     timestamps(type: :utc_datetime)
@@ -21,5 +21,12 @@ defmodule VidashLiveServer.Servers.Server do
     server
     |> cast(attrs, [:name, :image_url, :invite_code])
     |> validate_required([:name])
+    |> put_invite_code()
   end
+
+  defp put_invite_code(%Ecto.Changeset{valid?: true, changes: %{name: name}} = changeset) do
+    change(changeset, invite_code: Bcrypt.hash_pwd_salt(name))
+  end
+
+  defp put_invite_code(changeset), do: changeset
 end
