@@ -3,6 +3,7 @@ import { useForm } from 'vee-validate'
 import { toTypedSchema } from '@vee-validate/zod'
 import * as z from 'zod'
 import axios from '@/axios'
+import useStore from '@/store/useStore.ts'
 
 import { Button } from '@/components/ui/button'
 import {
@@ -14,6 +15,8 @@ import {
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import router from '@/router'
+
+const store = useStore()
 
 const formSchema = toTypedSchema(
   z.object({
@@ -39,6 +42,7 @@ const login = (paramObject: loginParams) => {
     .then((response) => {
       localStorage.setItem('token', response.data.token)
       localStorage.setItem('auth_id', response.data.id)
+      store.account_id = response.data.id
 
       form.resetForm()
       router.push("/").then(() => router.go(0))

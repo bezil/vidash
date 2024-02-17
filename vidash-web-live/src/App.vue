@@ -5,6 +5,9 @@ import { computed } from 'vue'
 import Toaster from '@/components/ui/toast/Toaster.vue'
 import DarkMode from '@/components/theme/DarkMode.vue'
 import router from '@/router';
+import { useDark } from '@vueuse/core'
+
+const isDark = useDark()
 
 const isAuthenticated = computed(
   () => localStorage.getItem('token') && localStorage.getItem('auth_id')
@@ -19,7 +22,9 @@ const logout = () => {
 
 <template>
   <div class="h-[40px] w-full flex flex-row justify-between items-center py-2 border-b border-b-grey">
-    <p class="px-4">Vidash <b><i>LIVE</i></b></p>
+    <img v-if="isDark" src="../public/logo.png" class="h-4 px-4" />
+    <img v-else src="../public/logo-dark.png" class="h-4 px-4" />
+
     <div>
       <DarkMode />
       <Button v-if="isAuthenticated" variant="ghost" @click="logout()">
