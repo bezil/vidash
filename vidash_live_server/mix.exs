@@ -50,7 +50,7 @@ defmodule VidashLiveServer.MixProject do
       {:poison, "~> 3.0"},
       {:hackney, "~> 1.9"},
       {:sweet_xml, "~> 0.6.6"},
-      { :uuid, "~> 1.1" },
+      {:uuid, "~> 1.1" },
     ]
   end
 
