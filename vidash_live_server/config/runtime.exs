@@ -63,14 +63,14 @@ if config_env() == :prod do
       # See the documentation on https://hexdocs.pm/plug_cowboy/Plug.Cowboy.html
       # for details about using IPv6 vs IPv4 and loopback vs public addresses.
       ip: {0, 0, 0, 0, 0, 0, 0, 0},
-      port: 80
+      port: port
     ],
     https: [
       port: 443,
       # cipher_suite: :strong,
       # keyfile: System.get_env("SOME_APP_SSL_KEY_PATH"),
       # certfile: System.get_env("SOME_APP_SSL_CERT_PATH")
-    ]
+    ],
     secret_key_base: secret_key_base
 
   # ## SSL Support
