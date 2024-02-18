@@ -49,14 +49,14 @@ if config_env() == :prod do
       You can generate one by calling: mix phx.gen.secret
       """
 
-  host = System.get_env("PHX_HOST") || "example.com"
+  host = System.get_env("RENDER_EXTERNAL_HOSTNAME") || "localhost"
   port = String.to_integer(System.get_env("PORT") || "4000")
 
   config :vidash_live_server, :dns_cluster_query, System.get_env("DNS_CLUSTER_QUERY")
 
   config :vidash_live_server, VidashLiveServerWeb.Endpoint,
     force_ssl: [rewrite_on: [:x_forwarded_proto]],
-    url: [host: System.get_env("RENDER_EXTERNAL_HOSTNAME") || "localhost", port: 80],
+    url: [host: host, port: 443, scheme: "https"],
     http: [
       # Enable IPv6 and bind on all interfaces.
       # Set it to  {0, 0, 0, 0, 0, 0, 0, 1} for local network only access.
@@ -65,12 +65,12 @@ if config_env() == :prod do
       ip: {0, 0, 0, 0, 0, 0, 0, 0},
       port: port
     ],
-    https: [
-      port: 443,
+    # https: [
+    #   port: 443,
       # cipher_suite: :strong,
       # keyfile: System.get_env("SOME_APP_SSL_KEY_PATH"),
       # certfile: System.get_env("SOME_APP_SSL_CERT_PATH")
-    ],
+    # ],
     secret_key_base: secret_key_base
 
   # ## SSL Support
