@@ -54,7 +54,13 @@ if config_env() == :prod do
   config :vidash_live_server, :dns_cluster_query, System.get_env("DNS_CLUSTER_QUERY")
 
   config :vidash_live_server, VidashLiveServerWeb.Endpoint,
-    url: [host: System.get_env("RENDER_EXTERNAL_HOSTNAME") || "localhost", port: 80],  cache_static_manifest: "priv/static/cache_manifest.json",
+    force_ssl: [rewrite_on: [:x_forwarded_proto]],
+    url: [host: System.get_env("RENDER_EXTERNAL_HOSTNAME") || "localhost", port: 80, scheme: "https"],
+    cache_static_manifest: "priv/static/cache_manifest.json",
+    check_origin: [
+      "//vidash.live",
+      "//www.vidash.live",
+    ],
     http: [
       # Enable IPv6 and bind on all interfaces.
       # Set it to  {0, 0, 0, 0, 0, 0, 0, 1} for local network only access.
