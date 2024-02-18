@@ -57,7 +57,6 @@ if config_env() == :prod do
   config :vidash_live_server, VidashLiveServerWeb.Endpoint,
     force_ssl: [rewrite_on: [:x_forwarded_proto]],
     url: [host: System.get_env("RENDER_EXTERNAL_HOSTNAME") || "localhost", port: 443, scheme: "https"],
-    cache_static_manifest: "priv/static/cache_manifest.json",
     check_origin: [
       "//vidash.live",
       "//www.vidash.live"
