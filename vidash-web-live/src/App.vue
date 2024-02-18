@@ -6,6 +6,9 @@ import Toaster from '@/components/ui/toast/Toaster.vue'
 import DarkMode from '@/components/theme/DarkMode.vue'
 import router from '@/router';
 import { useDark } from '@vueuse/core'
+import useStore from '@/store/useStore'
+
+const { resetStore } = useStore()
 
 const isDark = useDark()
 
@@ -16,6 +19,7 @@ const isAuthenticated = computed(
 const logout = () => {
   localStorage.removeItem('token')
   localStorage.removeItem('auth_id')
+  resetStore()
   router.push("/signin").then(() => router.go(0))
 }
 </script>
