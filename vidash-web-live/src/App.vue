@@ -22,8 +22,8 @@ const logout = () => {
 
 <template>
   <div class="h-[40px] w-full flex flex-row justify-between items-center py-2 border-b border-b-grey">
-    <img v-if="isDark" src="../public/logo.png" class="h-4 px-4" />
-    <img v-else src="../public/logo-dark.png" class="h-4 px-4" />
+    <img v-if="isDark" src="/logo.png" class="h-4 px-4" />
+    <img v-else src="/logo-dark.png" class="h-4 px-4" />
 
     <div>
       <DarkMode />
