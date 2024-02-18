@@ -56,19 +56,21 @@ if config_env() == :prod do
 
   config :vidash_live_server, VidashLiveServerWeb.Endpoint,
     force_ssl: [rewrite_on: [:x_forwarded_proto]],
-    url: [host: System.get_env("RENDER_EXTERNAL_HOSTNAME") || "localhost", port: 443, scheme: "https"],
-    check_origin: [
-      "//vidash.live",
-      "//www.vidash.live"
-    ],
+    url: [host: System.get_env("RENDER_EXTERNAL_HOSTNAME") || "localhost", port: 80],
     http: [
       # Enable IPv6 and bind on all interfaces.
       # Set it to  {0, 0, 0, 0, 0, 0, 0, 1} for local network only access.
       # See the documentation on https://hexdocs.pm/plug_cowboy/Plug.Cowboy.html
       # for details about using IPv6 vs IPv4 and loopback vs public addresses.
       ip: {0, 0, 0, 0, 0, 0, 0, 0},
-      port: port
+      port: 80
     ],
+    https: [
+      port: 443,
+      # cipher_suite: :strong,
+      # keyfile: System.get_env("SOME_APP_SSL_KEY_PATH"),
+      # certfile: System.get_env("SOME_APP_SSL_CERT_PATH")
+    ]
     secret_key_base: secret_key_base
 
   # ## SSL Support
