@@ -59,7 +59,7 @@ if config_env() == :prod do
     cache_static_manifest: "priv/static/cache_manifest.json",
     check_origin: [
       "//vidash.live",
-      "//www.vidash.live",
+      "//www.vidash.live"
     ],
     http: [
       # Enable IPv6 and bind on all interfaces.
