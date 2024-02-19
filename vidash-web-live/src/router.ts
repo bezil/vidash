@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router';
+import Dashboard from './components/pages/Dashboard.vue';
 import Home from './components/pages/Home.vue';
 import Register from './components/pages/Register.vue';
 import Login from './components/pages/Login.vue';
@@ -8,7 +9,10 @@ const router = createRouter({
     routes: [
         {
             path: '/', component: Home,
-            meta: { requiresAuth: true }
+        },
+        {
+          path: '/dashboard', component: Dashboard,
+          meta: { requiresAuth: true }
         },
         {
             path: '/signup', component: Register,

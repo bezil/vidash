@@ -10,7 +10,7 @@ const useHomePage = () => {
     const isServerLoading = ref(true);
     const isServerAlreadySetup = ref(false)
 
-    const { account_id, storeUserDetails, storeServerDetails } = useStore()
+    const { account_id, storeUserDetails } = useStore()
 
     const fetchUserAccount = async () => {
         const response = await axios.get(`api/users/${account_id}`)
@@ -24,28 +24,7 @@ const useHomePage = () => {
         }
     }
 
-    const fetchServerDetails = async () => {
-        isServerLoading.value = true
-
-        const response = await axios.get(`api/servers/by_user_id/${current_user.value?.id}`)
-          .catch(() => console.log("No server found"))
-
-        if(response) {
-          console.log(response.data.details)
-          isServerAlreadySetup.value = true;
-          user_server.value = response.data.details
-        }
-
-        if(!!user_server.value) {
-          storeServerDetails(user_server.value)
-        }
-
-        isServerLoading.value = false
-      }
-
     const initializeHomePage = async () => {
-        await fetchUserAccount()
-        fetchServerDetails()
     }
 
     return {

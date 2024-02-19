@@ -1,4 +1,4 @@
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 import { User, Server } from '@/types/common.ts'
 import { defineStore } from 'pinia'
 
@@ -7,6 +7,9 @@ const useStore = defineStore('common', () => {
     const server = ref<Server>()
     const account_id = ref(localStorage.getItem('auth_id'))
 
+    const isAuthenticated = computed(
+        () => localStorage.getItem('token') && account_id.value
+      )
     const storeUserDetails = (userDetails: User) => {
         user.value = userDetails
     }
@@ -21,6 +24,7 @@ const useStore = defineStore('common', () => {
     }
 
     return {
+        isAuthenticated,
         account_id,
         user,
         server,

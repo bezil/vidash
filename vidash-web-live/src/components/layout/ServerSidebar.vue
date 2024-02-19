@@ -1,6 +1,9 @@
 <script lang="ts" setup>
 import { CircleFadingPlus } from 'lucide-vue-next'
 import { Button } from '@/components/ui/button'
+import useStore from '@/store/useStore'
+
+const { isAuthenticated } = useStore()
 
 import {
   Tooltip,
@@ -20,7 +23,7 @@ withDefaults(defineProps<{
 </script>
 <template>
   <div class="py-3 h-full w-full border-r border-r-grey flex flex-col gap-4">
-    <TooltipProvider>
+    <TooltipProvider v-if="isAuthenticated">
         <Tooltip>
           <TooltipTrigger>
             <Button variant="secondary" class="px-3 rounded-full hover:rounded-2xl">
