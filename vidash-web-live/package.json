@@ -1,11 +1,11 @@
 {
   "name": "vidash-web-live",
   "private": true,
-  "version": "0.1.2",
+  "version": "0.2.3",
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vue-tsc && vite build",
     "preview": "vite preview"
   },
   "dependencies": {
