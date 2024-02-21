@@ -29,7 +29,7 @@ const logout = () => {
 </script>
 
 <template>
-  <div class="h-[40px] w-full flex flex-row justify-between items-center py-2 border-b border-b-grey">
+  <div class="h-[40px] bg-white dark:bg-slate-900 w-full flex flex-row justify-between items-center py-2 border-b border-b-grey">
     <img v-if="isDark" src="/logo.png" class="h-4 px-4 cursor-pointer" @click="goToHome"/>
     <img v-else src="/logo-dark.png" class="h-4 px-4 cursor-pointer" @click="goToHome"/>
 
@@ -46,7 +46,7 @@ const logout = () => {
   <router-view></router-view>
   <Toaster />
 
-  <div class="fixed bottom-0 border-t border-t-grey h-[40px] w-full flex flex-row justify-between items-center py-1 px-2">
+  <div class="fixed bottom-0 border-t border-t-grey h-[40px] bg-white dark:bg-slate-900/80 w-full flex flex-row justify-between items-center py-1 px-2">
     <div class="flex items-center">
     <img v-if="isDark" src="/logo.png" class="h-2 px-2" />
     <img v-else src="/logo-dark.png" class="h-2 px-2" />
