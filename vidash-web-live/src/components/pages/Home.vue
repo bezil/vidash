@@ -12,7 +12,7 @@ initializeHomePage()
 <div class="flex flex-row w-full server-canvas">
   <div class="w-full">
     <iframe
-      src="https://devbez-vidash-live.hf.space"
+      src="https://hftools-inference-api.hf.space"
       frameborder="0"
       width="100%"
       height="100%"
