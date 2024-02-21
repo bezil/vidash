@@ -1,5 +1,8 @@
 <script lang="ts" setup>
 import useHomePage from '@/composables/useHomePage.ts'
+import useStore from '@/store/useStore'
+
+const { isAuthenticated } = useStore()
 
 const {
   initializeHomePage,
@@ -12,7 +15,9 @@ initializeHomePage()
 <div class="flex flex-row w-full server-canvas">
   <div class="w-full">
     <iframe
-      src="https://hftools-inference-api.hf.space"
+      :src="isAuthenticated
+        ? 'https://devbez-vidash-live.hf.space'
+        : 'https://hftools-inference-api.hf.space'"
       frameborder="0"
       width="100%"
       height="100%"
