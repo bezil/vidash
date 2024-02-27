@@ -8,23 +8,25 @@ import useStore from '@/store/useStore'
 const { account_id } = useStore()
 
 const {
-  user_servers, isServerLoading, isServerAlreadySetup,
-  isNewServerNeeded,
-  initializeDashboardPage,
+  user_servers, isServerLoading, isServerAlreadySetup, active_server,
+  isNewServerNeeded, updateActiveServer, initializeDashboardPage,
 } = useDashboardPage()
 
 initializeDashboardPage()
 </script>
 
 <template>
-  <template class="flex flex-row w-[60px] h-full z-10">
-    <ServerSidebar
-      v-if="user_servers?.length"
-      :servers="user_servers"
-      @add-requested="isNewServerNeeded = true"
-    />
+  <template class="flex flex-row w-full h-full">
+    <template class="flex w-[60px] z-10">
+      <ServerSidebar
+        v-if="user_servers?.length"
+        :servers="user_servers"
+        @add-requested="isNewServerNeeded = true"
+        @server-updated="updateActiveServer($event)"
+      />
+    </template>
+    <div class="flex flex-1 justify-center items-center">{{ active_server?.name }}</div>
   </template>
-
 
   <SetupServer
     v-if="!isServerAlreadySetup && !isServerLoading"

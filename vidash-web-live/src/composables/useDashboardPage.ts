@@ -6,12 +6,17 @@ import useStore from '@/store/useStore'
 const useDashboardPage = () => {
     const current_user = ref<User>()
     const user_servers = ref<Server[]>()
+    const active_server = ref<Server>()
 
     const isServerLoading = ref(true);
     const isServerAlreadySetup = ref(false)
     const isNewServerNeeded = ref(false)
 
     const { account_id, storeUserDetails, storeServerDetails } = useStore()
+
+    const updateActiveServer = (server_id: string) => {
+      active_server.value = user_servers.value?.find((server) => server.id === server_id)
+    }
 
     const fetchUserAccount = async () => {
         const response = await axios.get(`api/users/${account_id}`)
@@ -50,12 +55,13 @@ const useDashboardPage = () => {
     }
 
     return {
+        active_server,
         current_user,
         user_servers,
         isServerLoading,
         isServerAlreadySetup,
         isNewServerNeeded,
-
+        updateActiveServer,
         initializeDashboardPage,
         fetchUserAccount,
     }

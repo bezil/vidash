@@ -6,4 +6,5 @@ export type User = {
 export type Server = {
     name: string,
     image_url?: string,
+    id?: string,
 }
