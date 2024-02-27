@@ -43,7 +43,10 @@ const logout = () => {
       </Button>
     </div>
   </div>
-  <router-view></router-view>
+
+  <div class="app-canvas">
+    <router-view></router-view>
+  </div>
   <Toaster />
 
   <div class="fixed bottom-0 border-t border-t-grey h-[40px] bg-white dark:bg-slate-900/80 w-full flex flex-row justify-between items-center py-1 px-2">
@@ -64,5 +67,8 @@ const logout = () => {
 <style>
 html.dark {
   color-scheme: dark;
+}
+.app-canvas {
+  height: calc(100vh - 80px);
 }
 </style>

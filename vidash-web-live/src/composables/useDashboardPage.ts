@@ -5,10 +5,11 @@ import useStore from '@/store/useStore'
 
 const useDashboardPage = () => {
     const current_user = ref<User>()
-    const user_server = ref<Server>()
+    const user_servers = ref<Server[]>()
 
     const isServerLoading = ref(true);
     const isServerAlreadySetup = ref(false)
+    const isNewServerNeeded = ref(false)
 
     const { account_id, storeUserDetails, storeServerDetails } = useStore()
 
@@ -31,13 +32,13 @@ const useDashboardPage = () => {
           .catch(() => console.log("No server found"))
 
         if(response) {
-          console.log(response.data.details)
+          console.log(response.data)
           isServerAlreadySetup.value = true;
-          user_server.value = response.data.details
+          user_servers.value = response.data.servers
         }
 
-        if(!!user_server.value) {
-          storeServerDetails(user_server.value)
+        if(!!user_servers.value && user_servers.value.length > 0) {
+          storeServerDetails(user_servers.value)
         }
 
         isServerLoading.value = false
@@ -50,9 +51,10 @@ const useDashboardPage = () => {
 
     return {
         current_user,
-        user_server,
+        user_servers,
         isServerLoading,
         isServerAlreadySetup,
+        isNewServerNeeded,
 
         initializeDashboardPage,
         fetchUserAccount,

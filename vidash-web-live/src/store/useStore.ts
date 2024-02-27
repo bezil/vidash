@@ -4,7 +4,7 @@ import { defineStore } from 'pinia'
 
 const useStore = defineStore('common', () => {
     const user = ref<User>();
-    const server = ref<Server>()
+    const server = ref<Server[]>()
     const account_id = ref(localStorage.getItem('auth_id'))
 
     const isAuthenticated = computed(
@@ -14,8 +14,8 @@ const useStore = defineStore('common', () => {
         user.value = userDetails
     }
 
-    const storeServerDetails = (serverDetails: Server) => {
-        server.value = serverDetails
+    const storeServerDetails = (servers: Server[]) => {
+        server.value = servers
     }
 
     const resetStore = () => {

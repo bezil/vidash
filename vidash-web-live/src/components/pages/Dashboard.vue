@@ -1,26 +1,27 @@
 <script lang="ts" setup>
-import { computed } from 'vue';
 import SetupServer from '@/components/modals/SetupServer.vue'
+import NewServer from '@/components/modals/NewServer.vue'
 import ServerSidebar from '@/components/layout/ServerSidebar.vue'
-import useHomePage from '@/composables/useDashboardPage.ts'
+import useDashboardPage from '@/composables/useDashboardPage.ts'
 import useStore from '@/store/useStore'
 
 const { account_id } = useStore()
 
 const {
-  user_server, isServerLoading, isServerAlreadySetup, initializeDashboardPage,
-} = useHomePage()
-
-const imageUrl = computed(() => user_server.value?.image_url ?? '')
+  user_servers, isServerLoading, isServerAlreadySetup,
+  isNewServerNeeded,
+  initializeDashboardPage,
+} = useDashboardPage()
 
 initializeDashboardPage()
 </script>
 
 <template>
-  <template class="flex flex-row w-[60px] z-10">
+  <template class="flex flex-row w-[60px] h-full z-10">
     <ServerSidebar
-      :image-url="imageUrl"
-      :server-name="user_server?.name"
+      v-if="user_servers?.length"
+      :servers="user_servers"
+      @add-requested="isNewServerNeeded = true"
     />
   </template>
 
@@ -29,6 +30,13 @@ initializeDashboardPage()
     v-if="!isServerAlreadySetup && !isServerLoading"
     :dialog-visible="!isServerAlreadySetup"
     :account-id="account_id"
+    @fetch-details="initializeDashboardPage()"
+  />
+
+  <NewServer
+    :open="isNewServerNeeded && !isServerLoading"
+    :account-id="account_id"
+    @close-dialog="isNewServerNeeded = false"
     @fetch-details="initializeDashboardPage()"
   />
 </template>

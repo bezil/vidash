@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { X } from 'lucide-vue-next'
+
 import { computed, ref } from 'vue'
 import { useFileDialog } from '@vueuse/core'
 import axios from '@/axios'
@@ -53,13 +54,16 @@ type serverParams = {
 const progress = ref(30)
 
 const isLoading = ref(false)
-const isDialogVisible = ref(props.dialogVisible)
 const imageUploadUrl = ref('')
 
 const imageUrl =  ref('')
 const id = computed(() => props.accountId)
 
-const emit = defineEmits(['fetch-details'])
+const emit = defineEmits(['fetch-details', 'close-dialog'])
+
+const closeDialog = () => {
+  emit('close-dialog')
+}
 
 const { files, onChange, open, reset } = useFileDialog({
   accept: 'image/*',
@@ -91,7 +95,7 @@ onChange((selectedFiles) => {
 
 const createServer = (paramObject: serverParams) => {
   isLoading.value = true
-  axios.post('api/servers/create', {
+  axios.post('api/servers/add', {
       acc_id: id.value,
       server: {
         name: paramObject.name,
@@ -101,8 +105,8 @@ const createServer = (paramObject: serverParams) => {
     })
     .then(() => {
       form.resetForm()
-      isDialogVisible.value = false
       emit('fetch-details')
+      closeDialog()
     })
     .catch(error => console.error('Error:', error));
     isLoading.value = false
@@ -140,14 +144,12 @@ init()
 </script>
 
 <template>
-  <Dialog
-    :open="isDialogVisible"
-  >
+  <Dialog>
     <DialogContent>
       <DialogHeader>
-        <DialogTitle>Setup your Server</DialogTitle>
+        <DialogTitle>Add new Server</DialogTitle>
         <DialogDescription>
-          Setup your Vidash Live Server with name and image.
+          Add new Vidash Live Server with name and image.
         </DialogDescription>
       </DialogHeader>
       <FormField v-slot="{ componentField }" name="name">
@@ -173,11 +175,11 @@ init()
           Select Avatar image to upload
         </Button>
       <DialogFooter>
-        <Button @click="onSubmit">Create Server</Button>
+        <Button @click="onSubmit">Add New Server</Button>
       </DialogFooter>
 
       <template #close>
-        <X class="w-4 h-4" />
+        <X class="w-4 h-4" @click="closeDialog"/>
         <span class="sr-only">Close</span>
       </template>
     </DialogContent>

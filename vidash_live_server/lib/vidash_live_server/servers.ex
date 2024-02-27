@@ -42,7 +42,7 @@ defmodule VidashLiveServer.Servers do
   Get the server associated with that user as a member
   """
   def get_server_from_user(id) do
-    case Repo.one(from s in Server, where: s.user_id == ^id, select: s) do
+    case Repo.all(from s in Server, where: s.user_id == ^id, select: s) do
       nil -> {:error, "No server found for the user"}
       server ->
         server

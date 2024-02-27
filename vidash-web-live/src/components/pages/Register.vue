@@ -1,10 +1,13 @@
 <script setup lang="ts">
+import { ref } from 'vue'
 import { useForm } from 'vee-validate'
 import { toTypedSchema } from '@vee-validate/zod'
 import * as z from 'zod'
 import axios from '@/axios'
 import { useToast } from '@/components/ui/toast/use-toast'
 import { Button } from '@/components/ui/button'
+import { Loader2 } from 'lucide-vue-next'
+
 import {
   FormControl,
   FormField,
@@ -16,6 +19,7 @@ import { Input } from '@/components/ui/input'
 import router from '@/router'
 
 const { toast } = useToast()
+const isLoading = ref(false)
 
 const formSchema = toTypedSchema(
   z.object({
@@ -41,7 +45,9 @@ type signupParams = {
 };
 
 const fetchAuthToken = (paramObject: signupParams) => {
-    axios.post('api/signup', {
+  isLoading.value = true
+
+  axios.post('api/signup', {
         account: {
             email: paramObject.email,
             hashed_password: paramObject.password,
@@ -52,6 +58,8 @@ const fetchAuthToken = (paramObject: signupParams) => {
         }
     })
     .then(() => {
+      isLoading.value = false
+
       form.resetForm()
       router.push("/signin")
       toast({
@@ -111,9 +119,15 @@ const onSubmit = form.handleSubmit((values) => {
         <FormMessage />
       </FormItem>
     </FormField>
+
+    <Button v-if="isLoading" disabled>
+      <Loader2 class="w-4 h-4 mr-2 animate-spin" />
+      Please wait
+    </Button>
     <Button type="submit">
       Submit
     </Button>
+
     <Button variant="ghost" @click="redirectToLogin()">
       Login if account already created
     </Button>

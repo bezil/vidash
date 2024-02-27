@@ -4,7 +4,7 @@ import { toTypedSchema } from '@vee-validate/zod'
 import * as z from 'zod'
 import axios from '@/axios'
 import useStore from '@/store/useStore.ts'
-
+import { Loader2 } from 'lucide-vue-next'
 import { Button } from '@/components/ui/button'
 import {
   FormControl,
@@ -15,8 +15,10 @@ import {
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import router from '@/router'
+import { ref } from 'vue'
 
 const store = useStore()
+const isLoading = ref(false)
 
 const formSchema = toTypedSchema(
   z.object({
@@ -35,6 +37,7 @@ type loginParams = {
 };
 
 const login = (paramObject: loginParams) => {
+    isLoading.value = true
     axios.post('api/signin', {
         email: paramObject.email,
         hashed_password: paramObject.password,
@@ -43,6 +46,7 @@ const login = (paramObject: loginParams) => {
       localStorage.setItem('token', response.data.token)
       localStorage.setItem('auth_id', response.data.id)
       store.account_id = response.data.id
+      isLoading.value = false
 
       form.resetForm()
       router.push("/").then(() => router.go(0))
@@ -83,9 +87,14 @@ const onSubmit = form.handleSubmit((values) => {
       </FormItem>
     </FormField>
 
-    <Button type="submit">
+    <Button v-if="isLoading" disabled>
+      <Loader2 class="w-4 h-4 mr-2 animate-spin" />
+      Please wait
+    </Button>
+    <Button v-else type="submit">
       Login
     </Button>
+
     <Button variant="ghost" @click="redirectToRegister()">
       Signup if account not registered
     </Button>

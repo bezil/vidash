@@ -2,6 +2,7 @@
 import { CircleFadingPlus } from 'lucide-vue-next'
 import { Button } from '@/components/ui/button'
 import useStore from '@/store/useStore'
+import { Server } from '@/types/common.ts'
 
 const { isAuthenticated } = useStore()
 
@@ -13,20 +14,22 @@ import {
 } from '@/components/ui/tooltip'
 import { ScrollArea } from '@/components/ui/scroll-area'
 
-withDefaults(defineProps<{
-  imageUrl: string | null
-  serverName: string | null
-}>(), {
-  imageUrl: null,
-  serverName: null
-})
+const emit = defineEmits(['add-requested'])
+
+defineProps<{
+  servers: Server[]
+}>()
+
+const addServer = () => {
+  emit('add-requested')
+}
 </script>
 <template>
   <div class="py-3 h-full w-full border-r border-r-grey flex flex-col gap-4">
     <TooltipProvider v-if="isAuthenticated">
         <Tooltip>
           <TooltipTrigger>
-            <Button variant="secondary" class="px-3 rounded-full hover:rounded-2xl">
+            <Button variant="secondary" @click="addServer" class="px-3 rounded-full hover:rounded-2xl">
               <CircleFadingPlus class="w-4 h-4"/>
             </Button>
           </TooltipTrigger>
@@ -35,16 +38,17 @@ withDefaults(defineProps<{
           </TooltipContent>
         </Tooltip>
       </TooltipProvider>
-      <TooltipProvider>
+
+      <TooltipProvider v-for="server in servers" :key="server.name">
         <Tooltip>
           <TooltipTrigger>
             <img
-              v-if="imageUrl"
-              class="w-8 h-8 rounded-full mx-auto" :src="imageUrl" alt="server image"
+              v-if="server.image_url"
+              class="w-8 h-8 rounded-full mx-auto" :src="server.image_url" alt="server image"
             />
           </TooltipTrigger>
           <TooltipContent class="absolute top-1 left-5">
-            <p>{{ serverName }}</p>
+            <p>{{ server.name }}</p>
           </TooltipContent>
         </Tooltip>
       </TooltipProvider>
