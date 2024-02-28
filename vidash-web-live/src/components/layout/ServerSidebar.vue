@@ -85,10 +85,10 @@ const openServerClicked = (selected?: string): void => {
 
     <Separator orientation="horizontal" class="mx-auto w-[30px]" />
 
-    <TooltipProvider v-if="isAuthenticated && user?.full_name" class="fixed bottom-0">
+    <TooltipProvider v-if="isAuthenticated && user?.full_name">
         <Tooltip>
           <TooltipTrigger>
-            <div class="w-8 h-8 rounded-full mx-auto pt-1 mt-3 bg-secondary uppercase">
+            <div class="w-8 h-8 rounded-full mx-auto pt-1 mt-3 mb-4 bg-secondary uppercase md:mb-0">
                 {{ user.full_name.split('')[0] }}
               </div>
           </TooltipTrigger>
