@@ -37,7 +37,7 @@ config :cors_plug,
   origins: ["http://localhost:5173", "https://vidash.live", "https://www.vidash.live"],
   allow_headers: ["authorization", "content-type"],
   max_age: 86400,
-  methods: ["GET", "POST"]
+  methods: ["GET", "POST", "DELETE", "PUT"]
 
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason

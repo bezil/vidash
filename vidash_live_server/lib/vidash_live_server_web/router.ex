@@ -36,6 +36,7 @@ defmodule VidashLiveServerWeb.Router do
     get "/uploads/request_url", UploadController, :create_signed_url
 
     get "/servers/:id", ServerController, :show
+    delete "/servers/:id", ServerController, :delete
     get "/servers/by_user_id/:user_id", ServerController, :show_from_user
     post "/servers/create", ServerController, :create_server_user
     post "/servers/add", ServerController, :add_server_user

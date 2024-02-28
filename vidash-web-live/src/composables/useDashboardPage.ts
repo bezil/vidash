@@ -33,8 +33,10 @@ const useDashboardPage = () => {
     const deleteActiveServer = async (id: string) => {
       const response = await axios.delete(`api/servers/${id}`)
 
-      if(response.status == 200) {
+      if(response.status === 204) {
         console.log('Deleted server')
+        active_server.value = undefined
+        fetchServerDetails();
       }
     }
 

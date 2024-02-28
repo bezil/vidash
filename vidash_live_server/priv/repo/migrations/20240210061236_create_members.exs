@@ -6,7 +6,7 @@ defmodule VidashLiveServer.Repo.Migrations.CreateMembers do
       add :id, :binary_id, primary_key: true
       add :role, :string, default: "GUEST"
       add :user_id, references(:users, on_delete: :nothing, type: :binary_id)
-      add :server_id, references(:servers, on_delete: :nothing, type: :binary_id)
+      add :server_id, references(:servers, on_delete: :delete_all, type: :binary_id)
 
       timestamps(type: :utc_datetime)
     end

@@ -100,4 +100,23 @@ defmodule VidashLiveServerWeb.ServerController do
           end
       end
     end
+
+    def delete(conn, %{"id" => id}) do
+      case Members.delete_members_server(id) do
+        _ ->
+          server = Servers.get_server!(id)
+          IO.inspect(server)
+
+          with {:ok, %Server{}} <- Servers.delete_server(server) do
+            send_resp(conn, :no_content, "")
+          end
+
+        {:error, error} ->
+          IO.puts("$$")
+
+          conn
+          |> put_status(:unprocessable_entity)
+          |> render("error.json", %{message: "Failed to delete members", error: inspect(error)})
+      end
+    end
 end

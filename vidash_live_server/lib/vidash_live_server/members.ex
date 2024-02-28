@@ -7,6 +7,7 @@ defmodule VidashLiveServer.Members do
   alias VidashLiveServer.Repo
 
   alias VidashLiveServer.Members.Member
+  alias VidashLiveServer.Servers.Server
 
   @doc """
   Returns the list of members.
@@ -109,6 +110,14 @@ defmodule VidashLiveServer.Members do
   """
   def delete_member(%Member{} = member) do
     Repo.delete(member)
+  end
+
+  @doc """
+    Delete all members of server before deleting server
+  """
+  def delete_members_server(server_id, attrs \\ %{}) do
+    from(m in Member, where: m.server_id == ^server_id)
+    |> Repo.delete_all()
   end
 
   @doc """
