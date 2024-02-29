@@ -15,7 +15,7 @@ import {
 
 defineProps<{
   server: Server
-  visitors: number
+  visitors?: number
 }>()
 
 const emit = defineEmits(['delete-requested'])
@@ -78,7 +78,7 @@ const deleteServer = () => {
         </div>
       </ScrollArea>
 
-      <div class="text-ns bottom-0 absolute p-2 mx-auto w-full">
+      <div v-if="visitors" class="text-ns bottom-0 absolute p-2 mx-auto w-full">
         Online : <span class="bg-secondary px-2 rounded"> {{ visitors + 1 }} Visitors </span>
       </div>
   </div>
