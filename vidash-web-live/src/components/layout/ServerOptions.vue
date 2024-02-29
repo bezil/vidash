@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { Server } from '@/types/common.ts'
 import { ScrollArea } from '@/components/ui/scroll-area'
-import { MonitorDot, ChevronsUpDown, Trash, Lock,
+import { MonitorDot, ChevronsUpDown, Trash, Lock, ListPlus,
   Users, Hammer, TableProperties, Bot, Radio, UserRoundPlus,
 } from 'lucide-vue-next'
 import {
@@ -43,6 +43,10 @@ const deleteServer = () => {
             <DropdownMenuItem>
                 <UserRoundPlus class="mr-2 h-3 w-3" />
                 <span class="text-sm">Invite Member</span>
+            </DropdownMenuItem>
+            <DropdownMenuItem>
+                <ListPlus class="mr-2 h-3 w-3" />
+                <span class="text-sm">Add Channel</span>
             </DropdownMenuItem>
             <DropdownMenuItem>
                 <Trash class="mr-2 h-3 w-3" />
