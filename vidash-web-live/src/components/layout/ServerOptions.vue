@@ -12,6 +12,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
+import router from '@/router'
 
 defineProps<{
   server: Server
@@ -68,7 +69,9 @@ const deleteServer = () => {
           </div>
           <div class="flex flex-col w-full items-left text-left px-2 pt-4">
             <p class="uppercase text-ns items-center pb-1"><Hammer class="w-3 h-3 mr-1 inline text-ring" /> TOOLS</p>
-            <p class="text-sm py-1 pl-5 pr-1 flex justify-between items-center cursor-pointer hover:bg-secondary rounded-sm">Live
+            <p class="text-sm py-1 pl-5 pr-1 flex justify-between items-center cursor-pointer hover:bg-secondary rounded-sm"
+              @click="router.push('/play')"
+            >Live
               <Radio class="w-4 h4 inline text-ring" />
             </p>
             <p class="text-sm py-1 pl-5 pr-1 flex justify-between items-center cursor-pointer hover:bg-secondary rounded-sm">AI

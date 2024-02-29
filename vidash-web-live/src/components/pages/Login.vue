@@ -53,7 +53,7 @@ const login = (paramObject: loginParams) => {
       isLoading.value = false
 
       form.resetForm()
-      router.push("/").then(() => router.go(0))
+      router.push("/dashboard").then(() => router.go(0))
     })
     .catch(error => {
       isLoading.value = false
@@ -74,8 +74,8 @@ const onSubmit = form.handleSubmit((values) => {
 </script>
 
 <template>
-    <div class="place-items-center grid pt-8">
-        <form class="flex flex-col gap-y-4 w-full text-left
+    <div class="place-items-center grid pt-8 h-full">
+        <form class="flex flex-col gap-y-4 w-full text-left -mt-16
             max-w-sm border border-grey rounded-md p-8" @submit.prevent="onSubmit">
         <p class="text-3xl pb-2">Login</p>
         <FormField v-slot="{ componentField }" name="email">

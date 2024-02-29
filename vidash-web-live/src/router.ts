@@ -1,6 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import Dashboard from './components/pages/Dashboard.vue';
 import Home from './components/pages/Home.vue';
+import Manage from './components/pages/Manage.vue';
+import Playground from './components/pages/Playground.vue';
 import Register from './components/pages/Register.vue';
 import Login from './components/pages/Login.vue';
 
@@ -8,20 +10,26 @@ const router = createRouter({
     history: createWebHistory(),
     routes: [
         {
-            path: '/', component: Home,
+            path: '/',  name: 'home', component: Home,
+        },
+        {
+          path: '/play', name: 'play', component: Playground,
         },
         {
           path: '/dashboard', component: Dashboard,
           meta: { requiresAuth: true }
         },
         {
-            path: '/signup', component: Register,
+          path: '/manage', component: Manage,
+          meta: { requiresAuth: true }
         },
         {
-            path: '/signin',
-            component: Login,
-            name: 'Login',
+          path: '/signup', name: 'Register', component: Register,
         },
+        {
+          path: '/signin', name: 'Login', component: Login,
+        },
+        { path: '/:pathMatch(.*)*', component: Home }
     ],
     strict: true, // applies to all routes
 });

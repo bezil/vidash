@@ -79,8 +79,8 @@ const onSubmit = form.handleSubmit((values) => {
 </script>
 
 <template>
-    <div class="place-items-center grid pt-8">
-        <form class="flex flex-col gap-y-4 w-full text-left
+    <div class="place-items-center grid h-full pt-8">
+        <form class="flex flex-col gap-y-4 w-full text-left -mt-16
             max-w-sm border border-grey rounded-md p-8" @submit.prevent="onSubmit">
         <p class="text-3xl pb-2">Register</p>
         <FormField v-slot="{ componentField }" name="username">

@@ -9,7 +9,8 @@ const useStore = defineStore('common', () => {
 
     const isAuthenticated = computed(
         () => localStorage.getItem('token') && account_id.value
-      )
+    )
+
     const storeUserDetails = (userDetails: User) => {
         user.value = userDetails
     }
