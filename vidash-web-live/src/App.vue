@@ -49,17 +49,13 @@ const logout = () => {
   </div>
   <Toaster />
 
-  <div class="fixed bottom-0 border-t border-t-grey h-[40px] bg-white dark:bg-slate-900/80 w-full flex flex-row justify-between items-center py-1 px-2">
+  <div class="fixed bottom-0 border-t border-t-grey h-[25px] bg-white dark:bg-slate-900/80 w-full flex flex-row justify-end items-center py-1 px-2 z-1">
     <div class="flex items-center">
     <img v-if="isDark" src="/logo.png" class="h-2 px-2" />
     <img v-else src="/logo-dark.png" class="h-2 px-2" />
-    <span class="text-xs">© 2024
+    <span class="text-ns">© 2024
       <a href="https://devbez.digital/" target="_blank" class="text-cyan-500 pr-2">DEVBEZ Digital</a>
     </span>
-    </div>
-    <div>
-      <span class="text-xs">Powered by &#129303;
-      </span>
     </div>
   </div>
 </template>
@@ -69,6 +65,6 @@ html.dark {
   color-scheme: dark;
 }
 .app-canvas {
-  height: calc(100vh - 80px);
+  height: calc(100vh - 65px);
 }
 </style>

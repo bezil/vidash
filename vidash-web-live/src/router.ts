@@ -3,6 +3,7 @@ import Dashboard from './components/pages/Dashboard.vue';
 import Home from './components/pages/Home.vue';
 import Register from './components/pages/Register.vue';
 import Login from './components/pages/Login.vue';
+import Live from './components/live/Live.vue';
 
 const router = createRouter({
     history: createWebHistory(),
@@ -12,6 +13,10 @@ const router = createRouter({
         },
         {
           path: '/dashboard', component: Dashboard,
+          meta: { requiresAuth: true }
+        },
+        {
+          path: '/dashboard/live', component: Live,
           meta: { requiresAuth: true }
         },
         {

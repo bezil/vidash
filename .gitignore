@@ -33,4 +33,5 @@ vidash_live_server/.env
 
 #CFE
 vidash-web-live/.vite
+vidash-web-live/.env
 vidash-web-live/node_modules

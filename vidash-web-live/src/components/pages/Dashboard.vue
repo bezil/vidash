@@ -4,6 +4,7 @@ import NewServer from '@/components/modals/NewServer.vue'
 import ServerSidebar from '@/components/layout/ServerSidebar.vue'
 import ServerOptions from '@/components/layout/ServerOptions.vue'
 import useDashboardPage from '@/composables/useDashboardPage.ts'
+import useLiveBlocks from '@/composables/useLiveBlocks.ts'
 import useStore from '@/store/useStore'
 
 const { account_id } = useStore()
@@ -13,6 +14,8 @@ const {
   isNewServerNeeded, updateActiveServer, initializeDashboardPage,
   deleteActiveServer,
 } = useDashboardPage()
+
+const { othersCount } = useLiveBlocks(active_server.value?.name ?? "my-server-room")
 
 const deleteHandler = () => {
   if (!active_server.value?.id) {
@@ -39,10 +42,12 @@ initializeDashboardPage()
       <ServerOptions
         v-if="active_server"
         :server="active_server"
+        :visitors="othersCount"
         @delete-requested="deleteHandler"
       />
     </template>
-    <div class="flex flex-1 justify-center items-center">{{ active_server?.name }}</div>
+    <div class="flex flex-1 justify-center items-center">
+    </div>
   </template>
 
   <SetupServer

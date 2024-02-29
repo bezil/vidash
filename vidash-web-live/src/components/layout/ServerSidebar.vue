@@ -88,7 +88,7 @@ const openServerClicked = (selected?: string): void => {
     <TooltipProvider v-if="isAuthenticated && user?.full_name">
         <Tooltip>
           <TooltipTrigger>
-            <div class="w-8 h-8 rounded-full mx-auto pt-1 mt-3 mb-4 bg-secondary uppercase md:mb-0">
+            <div class="w-8 h-8 rounded-full mx-auto pt-1 mt-3 bg-secondary uppercase">
                 {{ user.full_name.split('')[0] }}
               </div>
           </TooltipTrigger>

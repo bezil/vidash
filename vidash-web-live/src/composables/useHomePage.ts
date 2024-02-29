@@ -25,6 +25,7 @@ const useHomePage = () => {
     }
 
     const initializeHomePage = async () => {
+        // TODO
     }
 
     return {

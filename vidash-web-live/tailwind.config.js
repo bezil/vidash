@@ -14,7 +14,7 @@ module.exports = {
 
   theme: {
     fontSize: {
-      ns: "0.6rem",
+      ns: '0.6rem',
       xs: '0.75rem',
       sm: '0.875rem',
       base: '1rem',

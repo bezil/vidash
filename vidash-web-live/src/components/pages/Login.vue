@@ -4,6 +4,8 @@ import { toTypedSchema } from '@vee-validate/zod'
 import * as z from 'zod'
 import axios from '@/axios'
 import useStore from '@/store/useStore.ts'
+import { useToast } from '@/components/ui/toast/use-toast'
+
 import { Loader2 } from 'lucide-vue-next'
 import { Button } from '@/components/ui/button'
 import {
@@ -16,6 +18,8 @@ import {
 import { Input } from '@/components/ui/input'
 import router from '@/router'
 import { ref } from 'vue'
+
+const { toast } = useToast()
 
 const store = useStore()
 const isLoading = ref(false)
@@ -51,7 +55,13 @@ const login = (paramObject: loginParams) => {
       form.resetForm()
       router.push("/").then(() => router.go(0))
     })
-    .catch(error => console.error('Error:', error));
+    .catch(error => {
+      isLoading.value = false
+      toast({
+        description: `Login failed: ${error.response.data.errors}`,
+      });
+      console.error('Error:', error)
+    });
 }
 
 const redirectToRegister = () => {
