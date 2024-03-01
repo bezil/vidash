@@ -147,14 +147,14 @@ init()
   <Dialog>
     <DialogContent>
       <DialogHeader>
-        <DialogTitle>Add new Server</DialogTitle>
+        <DialogTitle>Add new Dash Server</DialogTitle>
         <DialogDescription>
-          Add new Vidash Live Server with name and image.
+          Add new Vidash Live Dash Server with name and image.
         </DialogDescription>
       </DialogHeader>
       <FormField v-slot="{ componentField }" name="name">
         <FormItem>
-            <FormLabel>Server Name</FormLabel>
+            <FormLabel>Dash Name</FormLabel>
             <FormControl>
             <Input type="text" placeholder="Input server name" v-bind="componentField" />
             </FormControl>
@@ -175,7 +175,7 @@ init()
           Select Avatar image to upload
         </Button>
       <DialogFooter>
-        <Button @click="onSubmit">Add New Server</Button>
+        <Button @click="onSubmit">Add New Dash</Button>
       </DialogFooter>
 
       <template #close>

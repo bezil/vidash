@@ -9,7 +9,8 @@ const useManagePage = () => {
     const active_server = ref<Server>()
 
     const isServerLoading = ref(true);
-    const isServerAlreadySetup = ref(false)
+    const isServerAlreadySetup = ref(false);
+    const isValidToken = ref(false)
     const isNewServerNeeded = ref(false)
 
     const { account_id, storeUserDetails, storeServerDetails } = useStore()
@@ -71,6 +72,7 @@ const useManagePage = () => {
         isServerLoading,
         isServerAlreadySetup,
         isNewServerNeeded,
+        isValidToken,
         updateActiveServer,
         initializeManagePage,
         fetchUserAccount,

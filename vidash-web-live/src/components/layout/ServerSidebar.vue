@@ -22,7 +22,7 @@ const emit = defineEmits(['add-requested', 'server-updated'])
 const activeServer = ref('')
 
 defineProps<{
-  servers: Server[]
+  servers?: Server[]
 }>()
 
 const addServer = () => {

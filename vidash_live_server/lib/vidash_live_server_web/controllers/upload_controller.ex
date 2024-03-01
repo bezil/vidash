@@ -21,8 +21,20 @@ defmodule VidashLiveServerWeb.UploadController do
         # Generate a unique image url name
         object_key = UUID.uuid4
 
+        folder = case Mix.env() do
+          :prod ->
+            # Code specific to production environment
+            "prod"
+          :dev ->
+            # Code specific to development environment
+            "dev"
+          _ ->
+            # Code for other environments
+            "files"
+        end
+
         {:ok, signed_url} = ExAws.Config.new(:s3, config)
-                |> ExAws.S3.presigned_url(:put, bucket_name, "files/#{object_key}", presign_options)
+                |> ExAws.S3.presigned_url(:put, bucket_name, "#{folder}/#{object_key}", presign_options)
 
         signed_url
     end
