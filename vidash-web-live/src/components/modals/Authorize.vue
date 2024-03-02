@@ -26,6 +26,7 @@ import { Input } from '@/components/ui/input'
 const props = withDefaults(defineProps<{
   dialogVisible?: boolean
   accountId: string | null
+  serverName?: string
 }>(), {
   dialogVisible: true,
   accountId: '',
@@ -52,7 +53,9 @@ const closeDialog = () => {
 }
 
 const authorize = (params: { name: string } ) => {
-  if ((params.name === 'Master Dash') && !!id) {
+  if (!!props.serverName
+  && (params.name === props.serverName.split(' ').join('-').toLowerCase())
+  && !!id) {
       form.resetForm()
       emit('validated')
       closeDialog()

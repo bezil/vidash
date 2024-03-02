@@ -39,5 +39,7 @@ defmodule VidashLiveServerWeb.Router do
     delete "/servers/:id", ServerController, :delete
     get "/servers/by_user_id/:user_id", ServerController, :show_from_user
     post "/servers/add", ServerController, :add_server_user
+
+    get "/members/by_user_id/:user_id", MemberController, :show_from_user
   end
 end

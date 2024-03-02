@@ -58,7 +58,7 @@ const useManagePage = () => {
         }
 
         isServerLoading.value = false
-      }
+    }
 
     const initializeManagePage = async () => {
         await fetchUserAccount()

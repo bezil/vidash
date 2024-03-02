@@ -54,9 +54,10 @@ initializeManagePage()
   />
 
   <Authorize
-    v-if="!!account_id && !isValidToken"
+    v-if="!!account_id && !isValidToken && !!user_servers"
     :open="!isValidToken"
     :account-id="account_id"
+    :server-name="user_servers[0]?.name"
     @validated="isValidToken=true"
     @denied="isValidToken=false"
   />

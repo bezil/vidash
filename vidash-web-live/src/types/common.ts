@@ -8,3 +8,8 @@ export type Server = {
     image_url?: string,
     id?: string,
 }
+
+export type Member = {
+    id: string,
+    role?: string,
+}

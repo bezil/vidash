@@ -1,9 +1,10 @@
 import { computed, ref } from 'vue';
-import { User, Server } from '@/types/common.ts'
+import { User, Server, Member } from '@/types/common.ts'
 import { defineStore } from 'pinia'
 
 const useStore = defineStore('common', () => {
     const user = ref<User>();
+    const member = ref<Member>();
     const server = ref<Server[]>()
     const account_id = ref(localStorage.getItem('auth_id'))
 
@@ -19,9 +20,14 @@ const useStore = defineStore('common', () => {
         server.value = servers
     }
 
+    const storeMemberDetails = (member_value: Member) => {
+        member.value = member_value
+    }
+
     const resetStore = () => {
         user.value = undefined
         server.value = undefined
+        member.value = undefined
     }
 
     return {
@@ -31,6 +37,7 @@ const useStore = defineStore('common', () => {
         server,
         storeUserDetails,
         storeServerDetails,
+        storeMemberDetails,
         resetStore,
     }
 })

@@ -6,8 +6,13 @@ defmodule VidashLiveServerWeb.MemberController do
     action_fallback VidashLiveServerWeb.FallbackController
 
     def show(conn, %{"id" => id}) do
-      server = Members.get_server!(id)
-      render(conn, :show, server: server)
+      member = Members.get_member!(id)
+      render(conn, :show, member: member)
+    end
+
+    def show_from_user(conn, %{"user_id" => id}) do
+      member = Members.get_member_user(id)
+      render(conn, :show, member: member)
     end
 
     def create(conn,  %{"member" => member_params}) do

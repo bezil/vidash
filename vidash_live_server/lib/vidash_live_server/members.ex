@@ -39,6 +39,18 @@ defmodule VidashLiveServer.Members do
   def get_member!(id), do: Repo.get!(Member, id)
 
   @doc """
+  Get a member of default server using user id.
+  """
+  def get_member_user(id) do
+    server_id = default_server_id()
+
+    case Repo.one(from m in Member, where: m.user_id == ^id and m.server_id == ^server_id, select: m) do
+      nil -> {:error, "No member found for the user"}
+      member -> member
+    end
+  end
+
+  @doc """
   Creates a member.
 
   ## Examples
@@ -54,6 +66,15 @@ defmodule VidashLiveServer.Members do
     %Member{}
     |> Member.changeset(attrs)
     |> Repo.insert()
+  end
+
+  @doc """
+    Create guest member for deafult server id and given user id
+  """
+  def create_member_user(user, attrs \\ %{}) do
+    server_id = default_server_id()
+    member_changeset = Member.changeset(%Member{user_id: user.id, server_id: server_id, role: "GUEST"}, attrs)
+    Repo.insert(member_changeset)
   end
 
   @doc """
@@ -131,5 +152,9 @@ defmodule VidashLiveServer.Members do
   """
   def change_member(%Member{} = member, attrs \\ %{}) do
     Member.changeset(member, attrs)
+  end
+
+  defp default_server_id do
+    "3a77b618-fa19-4007-965e-9ef8c6249472"
   end
 end

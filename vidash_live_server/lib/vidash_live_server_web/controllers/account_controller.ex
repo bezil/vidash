@@ -2,7 +2,7 @@ defmodule VidashLiveServerWeb.AccountController do
   use VidashLiveServerWeb, :controller
 
   alias VidashLiveServerWeb.{Auth.Guardian, Auth.ErrorResponse}
-  alias VidashLiveServer.{Accounts, Accounts.Account, Users, Users.User}
+  alias VidashLiveServer.{Accounts, Accounts.Account, Users, Users.User, Members, Members.Member}
 
   action_fallback VidashLiveServerWeb.FallbackController
 
@@ -14,7 +14,8 @@ defmodule VidashLiveServerWeb.AccountController do
   def create(conn, %{"account" => account_params}) do
     with {:ok, %Account{} = account} <- Accounts.create_account(account_params),
     {:ok, token, _claims} <- Guardian.encode_and_sign(account),
-    {:ok, %User{} = user} <- Users.create_user(account, account_params) do
+    {:ok, %User{} = user} <- Users.create_user(account, account_params),
+    {:ok, %Member{} = member} <- Members.create_member_user(user) do
       conn
       |> put_status(:created)
       |> render(:account_token, %{account: account, user: user, token: token})
