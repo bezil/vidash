@@ -15,7 +15,6 @@ MIX_ENV=prod mix compile
 
 # Build the release and overwrite the existing release directory
 MIX_ENV=prod mix release --overwrite
-MIX_ENV=prod mix ecto.drop -r VidashLiveServerWeb.Repo --table members
 
 MIX_ENV=prod mix ecto.create
 MIX_ENV=prod mix ecto.migrate
