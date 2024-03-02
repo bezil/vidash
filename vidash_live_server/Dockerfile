@@ -20,19 +20,20 @@ ARG RUNNER_IMAGE="debian:${DEBIAN_VERSION}"
 
 FROM ${BUILDER_IMAGE} as builder
 
-# install build dependencies
-RUN apt-get update -y && apt-get install -y build-essential git \
-    && apt-get clean && rm -f /var/lib/apt/lists/*_*
+# install hex package manager
+RUN mix local.hex --force
 
-# prepare build dir
+# install phoenix
+RUN mix archive.install hex phx_new --force
+
 # create app folder
 RUN mkdir /app
 COPY . /app
 WORKDIR /app
 
 # install hex + rebar
-RUN mix local.hex --force && \
-    mix local.rebar --force
+# RUN mix local.hex --force && \
+#     mix local.rebar --force
 
 # set build ENV
 # ENV MIX_ENV="prod"
@@ -94,10 +95,10 @@ RUN npm install
 RUN node node_modules/brunch/bin/brunch build --production
 
 # create the digests
-RUN mix phoenix.digest
+RUN mix phx.digest
 
 # run phoenix in production on PORT 4000
-CMD mix phoenix.server
+CMD mix phx.server
 
 # Only copy the final release from the build stage
 # COPY --from=builder --chown=nobody:root /app/_build/${MIX_ENV}/rel/vidash_live_server ./
