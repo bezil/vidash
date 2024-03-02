@@ -30,6 +30,7 @@ vidash_live_server/*.ez
 vidash_live_server/vidash_live_server-*.tar
 
 vidash_live_server/.env
+vidash_live_server/try.sh
 
 #CFE
 vidash-web-live/.vite

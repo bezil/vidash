@@ -26,3 +26,4 @@ erl_crash.dump
 vidash_live_server-*.tar
 
 .env
+.try.sh
