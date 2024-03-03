@@ -53,9 +53,9 @@ const closeDialog = () => {
 }
 
 const authorize = (params: { name: string } ) => {
-  // if (!!props.serverName
-  // && (params.name === props.serverName.split(' ').join('-').toLowerCase())
-  if (!!params.name && !!id) {
+  if (!!props.serverName
+    && (params.name === props.serverName.split(' ').join('-').toLowerCase())
+    && !!id) {
       form.resetForm()
       emit('validated')
       closeDialog()

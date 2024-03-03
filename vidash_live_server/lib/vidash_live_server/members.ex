@@ -155,6 +155,13 @@ defmodule VidashLiveServer.Members do
   end
 
   defp default_server_id do
-    "3a77b618-fa19-4007-965e-9ef8c6249472"
+    case System.get_env("MIX_ENV") do
+      :prod ->
+        # Code specific to production environment
+        "de163efc-7284-4f75-ac5d-cfc6d8d94d01"
+      :dev ->
+        # Code specific to development environment
+        "3a77b618-fa19-4007-965e-9ef8c6249472"
+    end
   end
 end
