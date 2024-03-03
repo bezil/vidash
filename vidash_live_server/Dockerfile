@@ -11,15 +11,14 @@
 #   - https://pkgs.org/ - resource for finding needed packages
 #   - Ex: hexpm/elixir:1.16.0-erlang-26.2.1-debian-bullseye-20231009-slim
 #
-# ARG ELIXIR_VERSION=1.16.0
-# ARG OTP_VERSION=26.2.1
-# ARG DEBIAN_VERSION=bullseye-20231009-slim
+ARG ELIXIR_VERSION=1.16.0
+ARG OTP_VERSION=26.2.1
+ARG DEBIAN_VERSION=bullseye-20231009-slim
 
-# ARG BUILDER_IMAGE="hexpm/elixir:${ELIXIR_VERSION}-erlang-${OTP_VERSION}-debian-${DEBIAN_VERSION}"
-# ARG RUNNER_IMAGE="debian:${DEBIAN_VERSION}"
+ARG BUILDER_IMAGE="hexpm/elixir:${ELIXIR_VERSION}-erlang-${OTP_VERSION}-debian-${DEBIAN_VERSION}"
+ARG RUNNER_IMAGE="debian:${DEBIAN_VERSION}"
 
-# FROM ${BUILDER_IMAGE} as builder
-FROM hexpm/elixir:1.16.1-erlang-24.3.4.16-debian-buster-20240130 as builder
+FROM ${BUILDER_IMAGE} as builder
 
 # install build dependencies
 RUN apt-get update -y && apt-get install -y build-essential git \
@@ -61,7 +60,7 @@ RUN mix release
 
 # start a new build stage so that the final image will only contain
 # the compiled release and other runtime necessities
-FROM hexpm/elixir:1.16.1-erlang-24.3.4.16-debian-buster-20240130
+FROM ${BUILDER_IMAGE}
 
 RUN apt-get update -y && \
   apt-get install -y libstdc++6 openssl libncurses5 locales ca-certificates \
