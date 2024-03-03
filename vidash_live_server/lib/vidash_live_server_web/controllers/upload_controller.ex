@@ -22,10 +22,10 @@ defmodule VidashLiveServerWeb.UploadController do
         object_key = UUID.uuid4
 
         folder = case System.get_env("MIX_ENV") do
-          :prod ->
+          "prod" ->
             # Code specific to production environment
             "prod"
-          :dev ->
+          "dev" ->
             # Code specific to development environment
             "dev"
           _ ->

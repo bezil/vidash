@@ -8,6 +8,7 @@ defmodule VidashLiveServer.Members do
 
   alias VidashLiveServer.Members.Member
   alias VidashLiveServer.Servers.Server
+  alias VidashLiveServer.Members
 
   @doc """
   Returns the list of members.
@@ -42,7 +43,7 @@ defmodule VidashLiveServer.Members do
   Get a member of default server using user id.
   """
   def get_member_user(id) do
-    server_id = default_server_id()
+    server_id = Members.default_server_id
 
     case Repo.one(from m in Member, where: m.user_id == ^id and m.server_id == ^server_id, select: m) do
       nil -> {:error, "No member found for the user"}
@@ -154,14 +155,15 @@ defmodule VidashLiveServer.Members do
     Member.changeset(member, attrs)
   end
 
-  defp default_server_id do
-    case System.get_env("MIX_ENV") do
-      :prod ->
+  def default_server_id do
+    default_id = case System.get_env("MIX_ENV") do
+      "prod" ->
         # Code specific to production environment
         "de163efc-7284-4f75-ac5d-cfc6d8d94d01"
-      :dev ->
+      "dev" ->
         # Code specific to development environment
         "3a77b618-fa19-4007-965e-9ef8c6249472"
     end
+    default_id
   end
 end
