@@ -21,7 +21,7 @@ defmodule VidashLiveServerWeb.UploadController do
         # Generate a unique image url name
         object_key = UUID.uuid4
 
-        folder = case Mix.env() do
+        folder = case System.get_env("MIX_ENV") do
           :prod ->
             # Code specific to production environment
             "prod"
