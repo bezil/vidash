@@ -39,9 +39,9 @@ const form = useForm({
 })
 
 type signupParams = {
-  email:  string,
-  password: string,
-  username: string,
+  email?:  string,
+  password?: string,
+  username?: string,
 };
 
 const fetchAuthToken = (paramObject: signupParams) => {

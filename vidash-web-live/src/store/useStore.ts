@@ -7,6 +7,7 @@ const useStore = defineStore('common', () => {
     const member = ref<Member>();
     const server = ref<Server[]>()
     const account_id = ref(localStorage.getItem('auth_id'))
+    const auth_token = ref(localStorage.getItem('token'))
 
     const isAuthenticated = computed(
         () => localStorage.getItem('token') && account_id.value
@@ -31,6 +32,7 @@ const useStore = defineStore('common', () => {
     }
 
     return {
+        auth_token,
         isAuthenticated,
         account_id,
         user,

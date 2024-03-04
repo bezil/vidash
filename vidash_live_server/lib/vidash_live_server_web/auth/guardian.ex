@@ -39,7 +39,7 @@ defmodule VidashLiveServerWeb.Auth.Guardian do
   end
 
   defp create_token(account) do
-    {:ok, token, _claims} = encode_and_sign(account)
+    {:ok, token, _claims} = encode_and_sign(account, ttl: {2, :hour})
     {:ok, account, token}
   end
 end
