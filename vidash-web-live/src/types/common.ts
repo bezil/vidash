@@ -15,3 +15,9 @@ export type Member = {
 }
 
 export type Role = 'GUEST' | 'ADMIN' | 'MODERATOR'
+
+export type NavigationItem = {
+    id: string,
+    title: string,
+    subtitle?: string,
+}
