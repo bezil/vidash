@@ -37,6 +37,7 @@ const useStore = defineStore('common', () => {
         account_id,
         user,
         server,
+        member,
         storeUserDetails,
         storeServerDetails,
         storeMemberDetails,

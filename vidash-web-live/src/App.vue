@@ -36,7 +36,7 @@ const goBack = () => {
 }
 
 const goToDashboard = () => {
-  router.push("/dashboard")
+  router.push("/dash")
 }
 
 const login = () => {

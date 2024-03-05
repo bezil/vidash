@@ -1,19 +1,18 @@
 import { ref } from 'vue';
-import { User, Server, Member } from '@/types/common.ts'
+import { User, Member } from '@/types/common.ts'
 import axios from '@/axios';
 import useStore from '@/store/useStore'
 
 const useDashboardPage = () => {
     const current_user = ref<User>()
-    const user_servers = ref<Server[]>()
     const member = ref<Member>()
-    const active_server = ref<Server>()
+    const current_navigation = ref()
     const isMemberLoading = ref(false)
 
     const { account_id, storeUserDetails, storeMemberDetails } = useStore()
 
-    const updateActiveServer = (server_id: string) => {
-      active_server.value = user_servers.value?.find((server) => server.id === server_id)
+    const updateActiveNavigationItem = (menu: string) => {
+      current_navigation.value = menu
     }
 
     const fetchUserAccount = async () => {
@@ -51,10 +50,10 @@ const useDashboardPage = () => {
     }
 
     return {
-        active_server,
+        member,
         current_user,
-        user_servers,
-        updateActiveServer,
+        current_navigation,
+        updateActiveNavigationItem,
         initializeDashboardPage,
         fetchUserAccount,
     }

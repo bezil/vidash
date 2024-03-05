@@ -53,7 +53,7 @@ const login = (paramObject: loginParams) => {
       isLoading.value = false
 
       form.resetForm()
-      router.push("/dashboard").then(() => router.go(0))
+      router.push("/dash").then(() => router.go(0))
     })
     .catch(error => {
       isLoading.value = false

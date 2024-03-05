@@ -13,3 +13,5 @@ export type Member = {
     id: string,
     role?: string,
 }
+
+export type Role = 'GUEST' | 'ADMIN' | 'MODERATOR'
