@@ -2,10 +2,11 @@ import { computed, ref } from 'vue';
 import { User, Server, Member } from '@/types/common.ts'
 import { defineStore } from 'pinia'
 
+const user = ref<User>();
+const member = ref<Member>();
+const server = ref<Server[]>()
+
 const useStore = defineStore('common', () => {
-    const user = ref<User>();
-    const member = ref<Member>();
-    const server = ref<Server[]>()
     const account_id = ref(localStorage.getItem('auth_id'))
     const auth_token = ref(localStorage.getItem('token'))
 
@@ -27,7 +28,7 @@ const useStore = defineStore('common', () => {
 
     const resetStore = () => {
         user.value = undefined
-        server.value = undefined
+        server.value = []
         member.value = undefined
     }
 

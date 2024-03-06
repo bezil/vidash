@@ -1,6 +1,9 @@
 export type User = {
-    full_name: string,
     id: string,
+    full_name: string,
+    gender?: string,
+    bio?: string,
+    avatar?: string,
 }
 
 export type Server = {

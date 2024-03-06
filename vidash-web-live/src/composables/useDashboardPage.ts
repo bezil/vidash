@@ -25,49 +25,49 @@ const useDashboardPage = () => {
         return {
           id: 'home',
           title: 'Home',
-          subtitle: 'AI Excellance'
+          subtitle: 'Unlock Top-Class AI Tools Now!'
         }
       } else if (menu === 'restore') {
         return {
           id: 'restore',
           title: 'Restore',
-          subtitle: 'AI Restore'
+          subtitle: 'Refine your images with precision by eliminating noise and imperfections effortlessly.'
         }
       } else if (menu === 'fill') {
         return {
           id: 'fill',
           title: 'Generative Fill',
-          subtitle: 'AI Fill'
+          subtitle: 'Enhance image dimensions seamlessly using advanced AI outpainting technology.'
         }
       } else if (menu === 'obj_remove') {
         return {
           id: 'obj_remove',
           title: 'Object Remove',
-          subtitle: 'AI Remove'
+          subtitle: 'Enhance the focus and aesthetics of your images by effortlessly removing distractions and refining the composition with precision.'
         }
       } else if (menu === 'recolor') {
         return {
           id: 'recolor',
           title: 'Object Recolor',
-          subtitle: 'AI Recolor'
+          subtitle: 'Easily identify objects within images using natural language and dynamically alter their colors to suit your preferences.'
         }
       } else if (menu === 'bg_remove') {
         return {
           id: 'bg_remove',
           title: 'Background Remove',
-          subtitle: 'AI BG Remove'
+          subtitle: 'Effortlessly remove backgrounds from your images using advanced AI technology.'
         }
       } else if (menu === 'profile') {
         return {
           id: 'profile',
           title: 'Profile',
-          subtitle: 'Details'
+          subtitle: 'Change user details'
         }
       } else if (menu === 'credits') {
         return {
           id: 'credits',
           title: 'Credits',
-          subtitle: 'Details'
+          subtitle: 'Change subscription details'
         }
       } else {
         return null

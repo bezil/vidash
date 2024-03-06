@@ -2,9 +2,5 @@
 </script>
 
 <template>
-<div class="flex flex-row w-full h-full">
-  <div class="w-full">
-
-  </div>
-</div>
+  <slot />
 </template>

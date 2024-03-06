@@ -32,6 +32,7 @@ defmodule VidashLiveServerWeb.Router do
 
     get "/accounts/:id", AccountController, :show
     get "/users/:account_id", UserController, :show_from_account
+    post "/users/:id/update", UserController, :update
 
     get "/uploads/request_url", UploadController, :create_signed_url
 

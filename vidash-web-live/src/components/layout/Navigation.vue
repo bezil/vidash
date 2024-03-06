@@ -130,7 +130,11 @@ const updateSelectedItem = (item_selected: string) => {
         <div
           class="w-6 h-6 rounded-full justify-center bg-secondary uppercase p-1"
         >
-          <span class="place-items-center grid text-xs">{{
+          <img
+            v-if="user.avatar"
+            class="w-4 h-4 rounded-full mx-auto" :src="user.avatar" alt="user image"
+          />
+          <span v-else class="place-items-center grid text-xs">{{
             user.full_name.split("")[0]
           }}</span>
         </div>

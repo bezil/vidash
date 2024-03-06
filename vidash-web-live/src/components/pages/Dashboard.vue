@@ -1,6 +1,12 @@
 <script lang="ts" setup>
 import Navigation from '@/components/layout/Navigation.vue'
 import useDashboardPage from '@/composables/useDashboardPage.ts'
+import Profile from '@/components/pages/Profile.vue'
+import Credits from '@/components/pages/Credits.vue'
+import Transpose from '@/components/pages/Transpose.vue'
+import ToolsForm from '@/components/tools/ToolsForm.vue'
+
+import { ScrollArea } from '@/components/ui/scroll-area'
 
 const { member, current_user, current_navigation,
   currentNavigationItem,
@@ -14,21 +20,40 @@ initializeDashboardPage()
   <template class="flex flex-row w-full h-full">
     <template class="flex w-[120px] md:w-[210px] z-10">
       <Navigation
-        v-if="member?.role === 'GUEST' && current_user"
+        v-if="current_user
+          && (member?.role === 'ADMIN'
+          || member?.role === 'MODERATOR'
+          || member?.role === 'GUEST')"
         :role="member.role"
         :user="current_user"
         :current_item="current_navigation"
         @navigation-selected="updateActiveNavigationItem($event)"
       />
     </template>
-    <div class="flex flex-1 pt-8 px-8 md:px-12">
-      <div
+    <div class="flex flex-1 flex-col pt-8">
+      <ScrollArea class="flex-1 h-full px-8 md:px-12">
+        <div
         v-if="!!currentNavigationItem"
         class="text-left"
       >
         <h1 class="text-3xl">{{ currentNavigationItem.title }}</h1>
         <h4 class="text-sm">{{ currentNavigationItem.subtitle }}</h4>
       </div>
+      <Profile
+        v-if="currentNavigationItem?.id === 'profile'"
+      />
+      <Credits
+        v-else-if="currentNavigationItem?.id === 'credits'"
+      />
+      <Transpose
+        v-else
+      >
+        <ToolsForm
+          v-if="!!currentNavigationItem?.id"
+          :type="currentNavigationItem?.id"
+        />
+      </Transpose>
+      </ScrollArea>
     </div>
   </template>
 </template>
