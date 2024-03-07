@@ -88,7 +88,7 @@ const updateSelectedItem = (item_selected: string) => {
             )"
             @click="updateSelectedItem('recolor')"
           >
-            Object Recolor
+            Recolor
           </p>
           <Separator />
 
