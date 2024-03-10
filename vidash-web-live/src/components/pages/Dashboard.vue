@@ -4,7 +4,7 @@ import useDashboardPage from '@/composables/useDashboardPage.ts'
 import Profile from '@/components/pages/Profile.vue'
 import Credits from '@/components/pages/Credits.vue'
 import Transpose from '@/components/pages/Transpose.vue'
-import ToolsForm from '@/components/tools/ToolsForm.vue'
+import ToolsForm from '@/components/form/ToolsForm.vue'
 
 import { ScrollArea } from '@/components/ui/scroll-area'
 

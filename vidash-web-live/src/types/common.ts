@@ -17,6 +17,13 @@ export type Member = {
     role?: string,
 }
 
+export type Image = {
+    public_id?: string,
+    width?: string,
+    height?: string,
+    secure_url?: string,
+}
+
 export type Role = 'GUEST' | 'ADMIN' | 'MODERATOR'
 
 export type NavigationItem = {

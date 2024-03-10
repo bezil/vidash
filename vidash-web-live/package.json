@@ -9,6 +9,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@cloudinary/url-gen": "^1.19.0",
+    "@cloudinary/vue": "^1.12.1",
     "@vee-validate/zod": "^4.12.5",
     "@vueuse/core": "^10.7.2",
     "axios": "^1.6.7",

@@ -27,9 +27,9 @@ import { Button } from '@/components/ui/button'
 
     <Separator />
 
-    <Button variant="outline">
+    <Button variant="secondary">
           Save Image
         </Button>
-      <Button>Remove Background</Button>
+      <Button>Recolor Object</Button>
     </div>
 </template>
