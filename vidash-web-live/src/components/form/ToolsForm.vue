@@ -20,7 +20,7 @@ initializeToolsForm()
 
 <template>
 <div class="flex flex-row w-full h-full">
-  <div class="text-left w-[70%] pt-4">
+  <div class="text-left w-full md:w-[70%] pt-4">
     <template v-if="type==='fill'">
       <FillForm />
     </template>
