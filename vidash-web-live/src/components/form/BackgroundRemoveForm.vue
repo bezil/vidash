@@ -1,4 +1,7 @@
 <script lang="ts" setup>
+import { ref } from 'vue'
+import { type CloudinaryImage } from "@cloudinary/url-gen"
+import { backgroundRemoval } from "@cloudinary/url-gen/actions/effect"
 import {
   FormControl,
   FormField,
@@ -9,7 +12,29 @@ import {
 import { Input } from '@/components/ui/input'
 import { Separator } from 'radix-vue'
 import { Button } from '@/components/ui/button'
+import UploaderForm from '@/components/form/UploaderForm.vue'
+import { Skeleton } from '@/components/ui/skeleton'
 
+const cloudinaryImage = ref<CloudinaryImage>()
+const transformedImage = ref<CloudinaryImage>()
+const transformedImageURL = ref('')
+const isTransposing = ref(false)
+
+const setImageInformation = (uploadedImage: CloudinaryImage) => {
+  cloudinaryImage.value = uploadedImage
+}
+
+const applyBgRemove = () => {
+  if (!cloudinaryImage.value) {
+    return
+  }
+
+  transformedImage.value = cloudinaryImage.value
+    .effect(backgroundRemoval())
+  transformedImageURL.value = transformedImage.value.toURL()
+
+  console.log(transformedImageURL.value)
+}
 </script>
 <template>
     <div class="flex flex-col gap-4 focus:ring-0 ">
@@ -27,9 +52,22 @@ import { Button } from '@/components/ui/button'
 
     <Separator />
 
-    <Button variant="secondary">
-          Save Image
-        </Button>
-      <Button>Remove Background</Button>
+    <UploaderForm @image-uploaded="setImageInformation($event)" />
+
+      <Button
+      :disabled="!cloudinaryImage"
+      @click="applyBgRemove()"
+      >Remove Background</Button>
+
+
+      <Separator />
+
+<template v-if="transformedImageURL">
+
+  <span class="text-lg">Transposed Image</span>
+  <Skeleton v-if="!isTransposing" class="h-[125px] w-full rounded-xl" />
+  <img v-show="isTransposing" :src="transformedImageURL" @load="isTransposing = true"/>
+  <Button class="mb-4" variant="secondary">Save Image</Button>
+</template>
     </div>
 </template>
