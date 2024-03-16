@@ -14,6 +14,7 @@ defmodule VidashLiveServer.Members.Member do
 
     # has_many(:messages, YourApp.Message)
     # has_many(:direct_messages, YourApp.DirectMessage)
+    has_many(:image, VidashLiveServer.Images.Image)
 
     # has_many(:conversations_initiated, YourApp.Conversation, foreign_key: :member_one_id)
     # has_many(:conversations_received, YourApp.Conversation, foreign_key: :member_two_id)
