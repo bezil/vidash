@@ -7,6 +7,7 @@ import Transpose from '@/components/pages/Transpose.vue'
 import ToolsForm from '@/components/form/ToolsForm.vue'
 
 import { ScrollArea } from '@/components/ui/scroll-area'
+import Skeleton from '../ui/skeleton/Skeleton.vue'
 
 const { member, current_user, current_navigation,
   currentNavigationItem,
@@ -29,6 +30,7 @@ initializeDashboardPage()
         :current_item="current_navigation"
         @navigation-selected="updateActiveNavigationItem($event)"
       />
+      <Skeleton v-else class="h-full w-full border-r border-r-grey"/>
     </template>
     <div class="flex flex-1 flex-col pt-8">
       <ScrollArea class="flex-1 h-full px-8 md:px-12">
