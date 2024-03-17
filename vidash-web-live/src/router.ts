@@ -4,7 +4,7 @@ import Home from './components/pages/Home.vue';
 import Manage from './components/pages/Manage.vue';
 import Playground from './components/pages/Playground.vue';
 import Credits from './components/pages/Credits.vue';
-import Transpose from './components/pages/Transpose.vue';
+import ToolsFormPage from './components/pages/ToolsFormPage.vue';
 import Profile from './components/pages/Profile.vue';
 import Register from './components/pages/Register.vue';
 import Login from './components/pages/Login.vue';
@@ -27,7 +27,7 @@ const router = createRouter({
           meta: { requiresAuth: true }
         },
         {
-          path: '/transpose', component: Transpose,
+          path: '/transpose', component: ToolsFormPage,
           meta: { requiresAuth: true }
         },
         {

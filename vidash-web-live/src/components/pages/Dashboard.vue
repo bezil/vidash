@@ -3,8 +3,7 @@ import Navigation from '@/components/layout/Navigation.vue'
 import useDashboardPage from '@/composables/useDashboardPage.ts'
 import Profile from '@/components/pages/Profile.vue'
 import Credits from '@/components/pages/Credits.vue'
-import Transpose from '@/components/pages/Transpose.vue'
-import ToolsForm from '@/components/form/ToolsForm.vue'
+import ToolsFormPage from '@/components/pages/ToolsFormPage.vue'
 
 import { ScrollArea } from '@/components/ui/scroll-area'
 import Skeleton from '../ui/skeleton/Skeleton.vue'
@@ -47,14 +46,10 @@ initializeDashboardPage()
       <Credits
         v-else-if="currentNavigationItem?.id === 'credits'"
       />
-      <Transpose
-        v-else
-      >
-        <ToolsForm
-          v-if="!!currentNavigationItem?.id"
-          :type="currentNavigationItem?.id"
-        />
-      </Transpose>
+      <ToolsFormPage
+        v-else-if="!!currentNavigationItem?.id"
+        :type="currentNavigationItem?.id"
+      />
       </ScrollArea>
     </div>
   </template>

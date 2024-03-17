@@ -12,29 +12,27 @@ withDefaults(defineProps<{
 })
 
 const {
-  initializeToolsForm,
+  saveToDatabase,
 } = useToolsForm()
-
-initializeToolsForm()
 </script>
 
 <template>
 <div class="flex flex-row w-full h-full">
   <div class="text-left w-full md:w-[70%] pt-4">
     <template v-if="type==='fill'">
-      <FillForm />
+      <FillForm @image-saved="saveToDatabase($event)"/>
     </template>
     <template v-else-if="type==='restore'">
-      <RestoreForm />
+      <RestoreForm @image-saved="saveToDatabase($event)" />
     </template>
     <template v-else-if="type==='recolor'">
-      <RecolorForm />
+      <RecolorForm @image-saved="saveToDatabase($event)" />
     </template>
     <template v-else-if="type==='obj_remove'">
-      <ObjectRemoveForm />
+      <ObjectRemoveForm @image-saved="saveToDatabase($event)" />
     </template>
     <template v-else-if="type==='bg_remove'">
-      <BackgroundRemoveForm />
+      <BackgroundRemoveForm @image-saved="saveToDatabase($event)" />
     </template>
   </div>
 </div>

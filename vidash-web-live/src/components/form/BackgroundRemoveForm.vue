@@ -20,6 +20,16 @@ const transformedImage = ref<CloudinaryImage>()
 const transformedImageURL = ref('')
 const isTransposing = ref(false)
 
+const emit = defineEmits(['image-saved'])
+
+const saveImage = () => {
+  emit('image-saved', {
+    old: cloudinaryImage,
+    new: transformedImage,
+  })
+}
+
+
 const setImageInformation = (uploadedImage: CloudinaryImage) => {
   cloudinaryImage.value = uploadedImage
 }
@@ -67,7 +77,7 @@ const applyBgRemove = () => {
   <span class="text-lg">Transposed Image</span>
   <Skeleton v-if="!isTransposing" class="h-[125px] w-full rounded-xl" />
   <img v-show="isTransposing" :src="transformedImageURL" @load="isTransposing = true"/>
-  <Button class="mb-4" variant="secondary">Save Image</Button>
+  <Button class="mb-4" variant="secondary" @click=saveImage()>Save Image</Button>
 </template>
     </div>
 </template>
