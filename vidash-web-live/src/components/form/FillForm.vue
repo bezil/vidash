@@ -36,8 +36,10 @@ const emit = defineEmits(['image-saved'])
 
 const saveImage = () => {
   emit('image-saved', {
-    old: cloudinaryImage,
-    new: transformedImage,
+    old: cloudinaryImage.value,
+    new: transformedImage.value,
+    aspect_ratio: aspectRatio.value,
+    type: 'generativeFill'
   })
 }
 
