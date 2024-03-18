@@ -1,5 +1,5 @@
 import { type CloudinaryImage } from "@cloudinary/url-gen"
-import axios from '@/axios'
+// import axios from '@/axios'
 
 type AllImageObject = {
 old: CloudinaryImage,
