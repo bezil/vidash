@@ -25,6 +25,9 @@ import { Separator } from "radix-vue"
 import { Button } from "@/components/ui/button"
 import { ar16X9, ar1X1, ar4X3 } from '@cloudinary/url-gen/qualifiers/aspectRatio';
 import { Skeleton } from '@/components/ui/skeleton'
+import { useForm } from 'vee-validate'
+import { toTypedSchema } from '@vee-validate/zod'
+import * as z from 'zod'
 
 const cloudinaryImage = ref<CloudinaryImage>()
 const transformedImage = ref<CloudinaryImage>()
@@ -34,12 +37,18 @@ const isTransposing = ref(false)
 
 const emit = defineEmits(['image-saved'])
 
-const saveImage = () => {
+type imageParams = {
+  name: string,
+  ratio?: string
+};
+
+const saveImage = (params: imageParams) => {
   emit('image-saved', {
     old: cloudinaryImage.value,
     new: transformedImage.value,
     aspect_ratio: aspectRatio.value,
-    type: 'generativeFill'
+    type: 'generativeFill',
+    title: params.name,
   })
 }
 
@@ -87,10 +96,25 @@ const applyFill = () => {
 
   console.log(transformedImageURL.value)
 }
+
+const formSchema = toTypedSchema(
+  z.object({
+    name:  z.string().min(1),
+  })
+)
+
+const form = useForm({
+  validationSchema: formSchema,
+})
+
+const onSubmit = form.handleSubmit((values) => {
+  saveImage(values)
+})
 </script>
 <template>
-  <div class="flex flex-col gap-4 focus:ring-0">
-    <FormField v-slot="{ componentField }" name="name">
+  <div class="focus:ring-0">
+    <form class="flex flex-col gap-4" @submit.prevent="onSubmit">
+      <FormField v-slot="{ componentField }" name="name">
       <FormItem>
         <FormLabel>Image name</FormLabel>
         <FormControl>
@@ -149,7 +173,8 @@ const applyFill = () => {
       <span class="text-lg">Transposed Image</span>
       <Skeleton v-if="!isTransposing" class="h-[125px] w-full rounded-xl" />
       <AdvancedImage v-show="isTransposing" :cld-img="transformedImage" @load="isTransposing = true"/>
-      <Button class="mb-4" variant="secondary" @click=saveImage()>Save Image</Button>
+      <Button class="mb-4" variant="secondary" type="submit">Save Image</Button>
     </template>
+    </form>
   </div>
 </template>
