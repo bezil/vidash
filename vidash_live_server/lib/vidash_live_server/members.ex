@@ -162,7 +162,7 @@ defmodule VidashLiveServer.Members do
         "de163efc-7284-4f75-ac5d-cfc6d8d94d01"
       "dev" ->
         # Code specific to development environment
-        "3a77b618-fa19-4007-965e-9ef8c6249472"
+        "2eb83025-a0df-468e-becb-2d1ae433328a"
     end
     default_id
   end
