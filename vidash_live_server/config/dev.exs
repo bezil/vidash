@@ -3,10 +3,10 @@ import Config
 # Configure your database
 config :vidash_live_server, VidashLiveServer.Repo,
   username: "postgres",
-  password: "vidash_password",
+  password: "root_password",
   hostname: "localhost",
-  port: 5430,
-  database: "vidash_db_dev",
+  port: 5432,
+  database: "db_dev",
   stacktrace: true,
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
