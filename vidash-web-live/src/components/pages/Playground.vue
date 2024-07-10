@@ -9,8 +9,8 @@ const { isAuthenticated } = useStore()
   <div class="w-full">
     <iframe
       :src="isAuthenticated
-        ? 'https://devbez-vidash-live.hf.space'
-        : 'https://hftools-inference-api.hf.space'"
+        ? 'https://hftools-inference-api.hf.space'
+        : 'https://devbez-vidash-live.hf.space'"
       frameborder="0"
       width="100%"
       height="100%"
