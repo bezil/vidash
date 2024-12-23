@@ -13,8 +13,7 @@ initializeHomePage()
   <div class="w-full glitch-wrapper">
 
   <div class="glitch-embed-wrap">
-    <embed src="https://spiral-wool-angle.glitch.me"></embed>
-
+    <embed src="https://spiral-wool-angle.glitch.me" width="100%" height="100%"></embed>
   </div>
   </div>
 </div>
