@@ -12,7 +12,7 @@ initializeHomePage()
 <div class="flex flex-row w-full h-full">
   <div class="w-full glitch-wrapper">
 
-  <div class="glitch-embed-wrap" style="height: 420px; width: 100%;">
+  <div class="glitch-embed-wrap">
     <iframe
       src="https://glitch.com/embed/#!/embed/spiral-wool-angle?path=README.md&previewSize=100&attributionHidden=true"
       title="Go Translate"
