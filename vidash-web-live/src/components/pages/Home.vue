@@ -14,7 +14,7 @@ initializeHomePage()
 
   <div class="glitch-embed-wrap">
     <iframe
-      src="https://glitch.com/embed/#!/embed/spiral-wool-angle?path=README.md&previewSize=100&attributionHidden=true"
+      src="https://spiral-wool-angle.glitch.me"
       title="Go Translate"
       allow="geolocation; microphone; camera; midi; encrypted-media; xr-spatial-tracking; fullscreen"
       allowFullScreen
