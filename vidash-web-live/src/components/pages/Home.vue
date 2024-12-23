@@ -11,6 +11,16 @@ initializeHomePage()
 <template>
 <div class="flex flex-row w-full h-full">
   <div class="w-full">
+    <!-- Copy and Paste Me -->
+<div class="glitch-embed-wrap" style="height: 420px; width: 100%;">
+  <iframe
+    src="https://glitch.com/embed/#!/embed/spiral-wool-angle?path=README.md&previewSize=100&attributionHidden=true"
+    title="Go Translate"
+    allow="xr-spatial-tracking; fullscreen"
+    allowFullScreen
+    style="height: 100%; width: 100%; border: 0;">
+  </iframe>
+</div>
   </div>
 </div>
 </template>
