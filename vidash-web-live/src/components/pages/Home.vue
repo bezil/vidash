@@ -13,15 +13,8 @@ initializeHomePage()
   <div class="w-full glitch-wrapper">
 
   <div class="glitch-embed-wrap">
-    <object data="https://spiral-wool-angle.glitch.me" width="600" height="400"></object>
-    <iframe
-      src="https://spiral-wool-angle.glitch.me"
-      title="Go Translate"
-      allow="geolocation; microphone; camera; midi; encrypted-media; xr-spatial-tracking; fullscreen"
-      allowFullScreen
-      style="height: 100%; width: 100%; border: 0;"
-      onload="this.contentWindow.focus();">
-    </iframe>
+    <embed src="https://spiral-wool-angle.glitch.me"></embed>
+
   </div>
   </div>
 </div>
