@@ -13,6 +13,7 @@ initializeHomePage()
   <div class="w-full glitch-wrapper">
 
   <div class="glitch-embed-wrap">
+    <object data="https://spiral-wool-angle.glitch.me" width="600" height="400"></object>
     <iframe
       src="https://spiral-wool-angle.glitch.me"
       title="Go Translate"
